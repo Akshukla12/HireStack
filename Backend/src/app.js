@@ -10,7 +10,7 @@ app.use(cors({
     origin: function(origin, callback) {
         const allowedOrigins = [
             "http://localhost:5173",
-            "https://hire-stack-pearl.vercel.app"
+            "https://hire-stack-tk81.vercel.app"
         ]
         // Allow requests with no origin (e.g. curl, Postman, server-to-server)
         if (!origin || allowedOrigins.includes(origin)) {
