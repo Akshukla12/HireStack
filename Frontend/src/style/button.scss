@@ -1,20 +1,50 @@
-.button{
-
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     outline: none;
-    padding-inline: 1.5rem;
-    padding-block: 0.75rem;
-    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-    transition: all 0.3s ease-in-out;
-
-    &.primary-button{
-        background-color: #e1034d;
+    &.primary-button {
+        background: linear-gradient(135deg, #0050b4 0%, #003a8c 100%);
         color: white;
+        box-shadow: 0 4px 14px rgba(0, 80, 180, 0.25);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 80, 180, 0.35);
+            filter: brightness(1.1);
+        }
     }
 
-    &:active{
-        transform: scale(0.9);
+    &.secondary-button {
+        background-color: #1e2535;
+        border: 1px solid #2a3348;
+        color: #e6edf3;
+
+        &:hover:not(:disabled) {
+            background-color: #2a3348;
+            color: white;
+            border-color: #0050b4;
+        }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none !important;
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.97);
     }
 }

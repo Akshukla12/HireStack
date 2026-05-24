@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Success Roadmap - InterviewAI Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-container": "#d0e1fb",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#bd4701",
+                        "on-primary-container": "#ecf0ff",
+                        "on-primary-fixed": "#001943",
+                        "secondary": "#505f76",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "primary-fixed-dim": "#afc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7e2c00",
+                        "tertiary-fixed-dim": "#ffb597",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-background": "#191c1e",
+                        "outline-variant": "#c2c6d6",
+                        "primary": "#0050b4",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary": "#953600",
+                        "on-surface": "#191c1e",
+                        "outline": "#727786",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0467e3",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0059c7",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "inverse-primary": "#afc6ff",
+                        "on-surface-variant": "#424754",
+                        "on-primary-fixed-variant": "#004398",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "max-width": "1440px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #0050b4 0%, #e2e8f0 100%); z-index: 0; }
+        .roadmap-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .roadmap-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08); }
+        .custom-checkbox:checked + label .check-icon { opacity: 1; }
+        .glass-panel { backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.8); }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant py-md px-sm z-50">
+<div class="px-sm mb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Interview Insight</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Enterprise Tier</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container rounded-lg px-sm py-xs" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Competency Map</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Practice History</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">AI Feedback</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Resource Library</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs border-t border-outline-variant pt-md">
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md rounded-xl py-sm px-md mb-md flex items-center justify-center gap-xs hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                    New Session
+                </button>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-all duration-200 text-error" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 w-full px-margin-desktop bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">InterviewAI Pro</span>
+<div class="hidden lg:flex gap-md ml-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Roadmap</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Mentors</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search roadmap..." type="text"/>
+</div>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container text-on-surface-variant rounded-full">notifications</button>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container text-on-surface-variant rounded-full">help</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a smiling young male executive with short dark hair and a neat beard. He is wearing a crisp white dress shirt against a clean, neutral architectural background. The lighting is bright and airy, reflecting a modern corporate minimalist aesthetic with soft, professional highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnC5BuVTiVTaE_ojrL9pILihOueYokJI2zoY6BJvU151R_hVJYiZIiaZPFbZTaxqZb6tkZzAgF3g6KS34QHcsZeCmX6PvwS-2qF3bw3zq9_tDemnsQ71q-Rfja4K41S9vvuK30Ujrt_nYodKrKkJGjzwtHmIgxWoCT5xbG2pAu8wbsNvXQhUQA24EAWBuvU160x_nHHnWcpntt6BBz2r1rQjjYHVu1__d91aEJLizYPd0pEzNEFr7nzmXZOvDS-LHxDCYUloFjQ9A"/>
+</div>
+</header>
+<!-- Page Header / Progress Overview -->
+<section class="px-margin-desktop py-lg">
+<div class="max-w-max-width mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-lg">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-2 block">Career Milestone</span>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Senior Frontend Engineer</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Follow this curated path to master system design, advanced JavaScript, and behavioral leadership. Your current velocity suggests completion in 14 days.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-lg">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-dasharray="213.6" stroke-dashoffset="64.08" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm font-bold">70%</span>
+</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Progress</p>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">14/20 Completed</p>
+<div class="mt-2 flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-lowest" data-alt="Close-up portrait of a professional woman with a warm, confident expression. She has long brown hair and is set against a soft-focus office background with bright, modern lighting that emphasizes a clean and corporate atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEqR5nT42E6G1YafHeT9WMTEeigOjU0uV-B9M7nUe7LK8OAwQYUQS8BumB1C3ZthTJLmWeVHoCVM_91FG0Nu_oKsLuKN84qlpctSShlPNB_m7Lpdp673AlOtCqjUa8fv4ChT7IqhJWrr6VuKiU47p0LdEtKsVYAjME7TebmTkcicGKYy3y28wnQNtbK5Z9ghbYUff9uJtksMLc_kc7rZuD1GqnEW3J2ELd7Tjbxg4yqIrW0XxI4-36F2EKpmkJQdzDPG07-C9r0KI"/>
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-lowest" data-alt="A smiling young man in a casual business outfit, looking directly at the camera. The setting is a brightly lit, contemporary co-working space with large windows and a soft blue and white color palette, creating a high-end technological feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA82DXehHmYMY7kFTL-QKyKLTLHiGxYh_4qUAA4FKhcP6LZfxejQprYfL6Yb1MlGPKMUNe3vcbvvqZe31ONqWYVvMn_dtG85tfq2sna_Sd1J9Hj2fdm8S6FvvK24aOYcCYKpbKJjGsGVsJozByllQDMATGvTOcTT-MrMRnS0pF98VqVN2J4o4fi_-JUo_SRM5MN0tQj8KkoT4d5l8V8xTQZHAM1dZWhrini2aPPH8m8hdpVedzVPbxBZiovZKSWuUdRfxZXTkLE00s"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-container-lowest bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">
+                                        +12
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Roadmap Layout: Bento Style + Timeline -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Timeline Section -->
+<div class="lg:col-span-8 space-y-md relative">
+<!-- Section: Foundations -->
+<div class="relative pl-12 pb-md">
+<div class="timeline-line"></div>
+<div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center bg-primary rounded-full z-10 text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md roadmap-card">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Phase 1: Foundations</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Core JavaScript Engines &amp; DOM Performance</p>
+</div>
+<span class="bg-primary/10 text-primary font-label-sm text-label-sm px-3 py-1 rounded-full">Completed</span>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center gap-md p-sm bg-surface-container-low rounded-lg opacity-60">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md flex-1">Prototypal Inheritance &amp; Closures Deep Dive</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">45m</span>
+</div>
+<div class="flex items-center gap-md p-sm bg-surface-container-low rounded-lg opacity-60">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md flex-1">Event Loop, Macrotasks, and Microtasks</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1h 20m</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Algorithms -->
+<div class="relative pl-12 pb-md">
+<div class="timeline-line" style="background: #e2e8f0;"></div>
+<div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center bg-surface-container-lowest border-2 border-primary rounded-full z-10 text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md roadmap-card">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Phase 2: Data Structures</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Optimizing for Scale and Complexity</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full">In Progress</span>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center gap-md p-sm hover:bg-surface-container-low transition-colors rounded-lg group cursor-pointer">
+<div class="relative">
+<input checked="" class="hidden custom-checkbox" id="task1" type="checkbox"/>
+<label class="w-6 h-6 border-2 border-primary rounded flex items-center justify-center cursor-pointer bg-primary" for="task1">
+<span class="material-symbols-outlined text-white text-sm check-icon">check</span>
+</label>
+</div>
+<span class="font-body-md text-body-md flex-1">Binary Search Trees &amp; Balancing Acts</span>
+<div class="flex items-center gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">play_circle</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">assignment</span></button>
+</div>
+</div>
+<div class="flex items-center gap-md p-sm hover:bg-surface-container-low transition-colors rounded-lg group cursor-pointer">
+<div class="relative">
+<input class="hidden custom-checkbox" id="task2" type="checkbox"/>
+<label class="w-6 h-6 border-2 border-outline rounded flex items-center justify-center cursor-pointer hover:border-primary transition-colors" for="task2">
+<span class="material-symbols-outlined text-white text-sm check-icon opacity-0">check</span>
+</label>
+</div>
+<span class="font-body-md text-body-md flex-1">Graph Traversal: BFS vs DFS Practice</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-error-container text-on-error-container rounded">Hard</span>
+</div>
+<div class="flex items-center gap-md p-sm hover:bg-surface-container-low transition-colors rounded-lg group cursor-pointer border-l-4 border-primary bg-primary/5">
+<div class="relative">
+<input class="hidden custom-checkbox" id="task3" type="checkbox"/>
+<label class="w-6 h-6 border-2 border-outline rounded flex items-center justify-center cursor-pointer hover:border-primary transition-colors" for="task3">
+<span class="material-symbols-outlined text-white text-sm check-icon opacity-0">check</span>
+</label>
+</div>
+<span class="font-body-md text-body-md flex-1 font-bold">Dynamic Programming Masterclass</span>
+<span class="font-label-sm text-label-sm text-primary animate-pulse">Next Action</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: System Design -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center bg-surface-container-lowest border-2 border-outline-variant rounded-full z-10 text-outline">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md roadmap-card opacity-80">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Phase 3: System Design</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Distributed Systems for Frontend Engineers</p>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full">Locked</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined">lock</span>
+<p class="font-body-sm text-body-sm italic">Complete Phase 2 to unlock this module</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar / Quick Actions -->
+<div class="lg:col-span-4 space-y-md">
+<!-- Stats Card -->
+<div class="bg-primary text-white rounded-xl p-md shadow-lg shadow-primary/10 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-white/70 mb-4">Current Streak</h4>
+<div class="flex items-end gap-sm mb-md">
+<span class="font-display-lg text-display-lg leading-none">12</span>
+<span class="font-headline-sm text-headline-sm mb-1">Days</span>
+</div>
+<div class="h-1 bg-white/20 rounded-full w-full mb-sm">
+<div class="h-full bg-white rounded-full w-4/5"></div>
+</div>
+<p class="font-body-sm text-body-sm text-white/80">3 days until next milestone bonus</p>
+</div>
+<!-- Resources Bento -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-md">Daily Resources</h4>
+<div class="space-y-sm">
+<a class="flex items-center gap-sm p-sm hover:bg-surface-container rounded-lg border border-transparent hover:border-outline-variant transition-all" href="#">
+<div class="w-10 h-10 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">System Design Guide</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">PDF • 2.4 MB</p>
+</div>
+</a>
+<a class="flex items-center gap-sm p-sm hover:bg-surface-container rounded-lg border border-transparent hover:border-outline-variant transition-all" href="#">
+<div class="w-10 h-10 rounded bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">video_library</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Redux Toolkit Expert</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Video • 14:20</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Mentorship Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md relative group overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity" data-alt="A modern, high-tech meeting room with a glass whiteboard filled with colorful diagrams and code architectures. The lighting is crisp and cool-toned, with sunlight streaming through large windows, creating a professional and productive atmosphere for mentorship and learning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd_5Tn65XfKs68tWVMFD7ji5r-nRX4tBvILz-MAid9998vMlaehB7oe8n-2eX-8bIj0x1Jhex0eGvVfN0H08ooHTaVDfo1ODJc8LhqAliFOph6FU3XZ1hSb8LLRZ0GBMrSMaVw2e0h7l63asaA4JJjE268yp-9c11tJnZe3PKL206v_PJXX65jxbWt3P5pCUNJxv7xdkpfuEcJb42wsWO-D2CenmPtQ3HiuuCrNAJ0NDNVv9SETFMG7PrOToxfEHXBbL9NzGjLM14"/>
+<div class="relative z-10">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-2">Need Help?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Book a 15-min flash session with an expert mentor.</p>
+<button class="w-full py-2 bg-surface-container-high hover:bg-primary hover:text-white transition-all rounded-lg font-label-md text-label-md text-on-surface">Book Mentor</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Navigation (Bottom) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] font-bold">Roadmap</span>
+</button>
+<div class="relative -top-6">
+<button class="w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold">Library</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple toggle for checkboxes and visual progress interaction
+        document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                const checkIcon = label.querySelector('.check-icon');
+                if (this.checked) {
+                    label.classList.add('bg-primary');
+                    label.classList.remove('border-outline');
+                    label.classList.add('border-primary');
+                    checkIcon.classList.remove('opacity-0');
+                } else {
+                    label.classList.remove('bg-primary');
+                    label.classList.add('border-outline');
+                    label.classList.remove('border-primary');
+                    checkIcon.classList.add('opacity-0');
+                }
+            });
+        });
+
+        // Background subtle hover interaction for roadmap cards
+        document.querySelectorAll('.roadmap-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.parentElement.querySelector('.absolute.left-0');
+                if (icon) icon.classList.add('scale-110', 'transition-transform');
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.parentElement.querySelector('.absolute.left-0');
+                if (icon) icon.classList.remove('scale-110');
+            });
+        });
+    </script>
+</body></html>

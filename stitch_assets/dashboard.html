@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI Pro Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-container": "#d0e1fb",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#bd4701",
+                        "on-primary-container": "#ecf0ff",
+                        "on-primary-fixed": "#001943",
+                        "secondary": "#505f76",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "primary-fixed-dim": "#afc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7e2c00",
+                        "tertiary-fixed-dim": "#ffb597",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-background": "#191c1e",
+                        "outline-variant": "#c2c6d6",
+                        "primary": "#0050b4",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary": "#953600",
+                        "on-surface": "#191c1e",
+                        "outline": "#727786",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0467e3",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0059c7",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "inverse-primary": "#afc6ff",
+                        "on-surface-variant": "#424754",
+                        "on-primary-fixed-variant": "#004398",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "max-width": "1440px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+        .upload-dashed {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='24' ry='24' stroke='%230050B4FF' stroke-width='2' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        }
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-surface-container-lowest border-r border-outline-variant fixed left-0 top-0 py-md px-sm z-40">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Interview Insight</h1>
+<p class="text-label-sm text-on-surface-variant opacity-70">Enterprise Tier</p>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container rounded-lg px-sm py-xs transition-soft scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Practice History</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">AI Feedback</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Competency Map</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Resource Library</span>
+</a>
+</nav>
+<div class="mt-auto space-y-xs pt-md border-t border-outline-variant">
+<button class="w-full mb-md flex items-center justify-center gap-xs bg-primary text-on-primary rounded-lg py-sm font-label-md shadow-sm hover:opacity-90 transition-soft">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Session
+            </button>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-sm py-xs transition-soft" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 w-full px-margin-desktop bg-surface-container-lowest sticky top-0 border-b border-outline-variant z-30">
+<div class="flex items-center gap-md">
+<span class="md:hidden material-symbols-outlined cursor-pointer">menu</span>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 focus:ring-2 focus:ring-primary/20 text-body-sm transition-soft" placeholder="Search sessions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<nav class="hidden lg:flex items-center gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Analytic Tools</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-sm ml-lg border-l border-outline-variant pl-lg">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-soft">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-soft">help</span>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a young male executive in a sleek modern office setting. The lighting is bright and airy, following a light-mode aesthetic with soft shadows. The person is wearing a minimalist dark sweater, looking confidently at the camera. The background is slightly blurred with hints of high-tech office equipment and large glass windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB851SCHiJiQ7qiTzWDrlK11Kz5P1tH9-99bVnG3f0VjKzC4bPGcLvcOoQI5aUCSb3LzZMKwfmhSKcuY3Sfe3XyQB0oBMV_4XI5wRv6Kxn0Sin8foXP0HfLP--eIBFlv8b7o62a4iXHsiu-gdwqGeOxdTdzIDnkZhOlTQIvBzU6n-aVuu_iCHqjrDFl03kKAnOGndYonwyrdtMkOGwLxOyhXIeJ-1ITfC-S-QYVPGfhc_FW2jaHOvHWPa012wrihbmapsTF8S1MnbU"/>
+</div>
+</div>
+</header>
+<div class="max-w-max-width mx-auto p-margin-desktop space-y-xl">
+<!-- Hero Section -->
+<section class="max-w-3xl pt-lg">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-md">Ace your next big role with AI precision.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Upload your CV and the job description. Our enterprise-grade AI engine analyzes the match, predicts questions, and builds a custom practice simulation tailored for you.
+                </p>
+</section>
+<!-- Upload Zone -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<div class="group relative flex flex-col items-center justify-center p-xl rounded-xl upload-dashed bg-surface-container-lowest hover:bg-primary/5 transition-soft cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-md group-hover:scale-110 transition-soft">
+<span class="material-symbols-outlined text-primary text-[32px]">description</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Drop your CV here</h3>
+<p class="text-body-sm text-on-surface-variant">PDF, DOCX up to 10MB</p>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+<div class="group relative flex flex-col items-center justify-center p-xl rounded-xl upload-dashed bg-surface-container-lowest hover:bg-primary/5 transition-soft cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-md group-hover:scale-110 transition-soft">
+<span class="material-symbols-outlined text-on-secondary-container text-[32px]">work</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Job Description</h3>
+<p class="text-body-sm text-on-surface-variant">Paste text or upload file</p>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</section>
+<!-- Recent Analysis Cards -->
+<section>
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Preparation Plans</h3>
+<button class="text-primary font-label-md flex items-center gap-xs hover:gap-sm transition-all">
+                        View All <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="glass-card p-md rounded-xl hover:shadow-lg transition-soft group">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Senior Product Designer</h4>
+<p class="text-body-sm text-on-surface-variant">Stripe • Remote</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-lg text-[32px] font-bold text-primary">94%</span>
+<span class="text-label-sm text-primary/70">Match Score</span>
+</div>
+</div>
+<div class="space-y-sm mb-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_today</span>
+<span class="text-body-sm text-on-surface-variant">Analyzed Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">list_alt</span>
+<span class="text-body-sm text-on-surface-variant">12 custom questions generated</span>
+</div>
+</div>
+<button class="w-full py-sm bg-surface-container-high text-on-surface font-label-md rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-soft">
+                            Resume Preparation
+                        </button>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-md rounded-xl hover:shadow-lg transition-soft group">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Staff Engineer</h4>
+<p class="text-body-sm text-on-surface-variant">Linear • San Francisco</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-lg text-[32px] font-bold text-tertiary">82%</span>
+<span class="text-label-sm text-tertiary/70">Match Score</span>
+</div>
+</div>
+<div class="space-y-sm mb-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_today</span>
+<span class="text-body-sm text-on-surface-variant">Analyzed Oct 21, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">list_alt</span>
+<span class="text-body-sm text-on-surface-variant">8 custom questions generated</span>
+</div>
+</div>
+<button class="w-full py-sm bg-surface-container-high text-on-surface font-label-md rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-soft">
+                            Resume Preparation
+                        </button>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-md rounded-xl hover:shadow-lg transition-soft group border-dashed">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Creative Director</h4>
+<p class="text-body-sm text-on-surface-variant">Apple • Cupertino</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-lg text-[32px] font-bold text-primary">97%</span>
+<span class="text-label-sm text-primary/70">Match Score</span>
+</div>
+</div>
+<div class="space-y-sm mb-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_today</span>
+<span class="text-body-sm text-on-surface-variant">Analyzed Oct 18, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">list_alt</span>
+<span class="text-body-sm text-on-surface-variant">15 custom questions generated</span>
+</div>
+</div>
+<button class="w-full py-sm bg-surface-container-high text-on-surface font-label-md rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-soft">
+                            Resume Preparation
+                        </button>
+</div>
+</div>
+</section>
+<!-- Quick Stats Section - Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-2 glass-card p-lg rounded-xl flex items-center gap-md">
+<div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[32px]">rocket_launch</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Session Activity</p>
+<h4 class="font-headline-md text-headline-md text-on-surface">12 Sessions Completed</h4>
+<p class="text-body-sm text-primary">Top 5% of active users this week</p>
+</div>
+</div>
+<div class="glass-card p-lg rounded-xl flex flex-col justify-between">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Avg Score</p>
+<div class="flex items-end gap-xs">
+<span class="text-display-lg text-headline-lg font-bold">88</span>
+<span class="text-body-md text-on-surface-variant mb-1">pts</span>
+</div>
+</div>
+<div class="glass-card p-lg rounded-xl flex flex-col justify-between">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Hours Saved</p>
+<div class="flex items-end gap-xs">
+<span class="text-display-lg text-headline-lg font-bold">42</span>
+<span class="text-body-md text-on-surface-variant mb-1">hrs</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for upload areas
+        const uploadZones = document.querySelectorAll('.upload-dashed');
+        uploadZones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('bg-primary/10');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('bg-primary/10');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('bg-primary/10');
+                // Handle file drop logic here
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('w-80');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('w-80');
+        });
+    </script>
+</body></html>
