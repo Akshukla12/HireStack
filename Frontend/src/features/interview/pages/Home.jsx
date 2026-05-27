@@ -22,8 +22,7 @@ import {
     ArrowRightIcon,
     CalendarIcon,
     ClipboardDocumentListIcon,
-    FolderOpenIcon,
-    RocketLaunchIcon
+    FolderOpenIcon
 } from '@heroicons/react/24/outline'
 
 const LogoIcon = ({ className = "w-8 h-8" }) => (
@@ -111,6 +110,7 @@ const Home = () => {
     const [jobDescription, setJobDescription] = useState("")
     const [selfDescription, setSelfDescription] = useState("")
     const [selectedFile, setSelectedFile] = useState(null)
+    const [selectedJdFile, setSelectedJdFile] = useState(null)
 
     // UI tabs and state
     const [resumeTab, setResumeTab] = useState("file") // "file" | "text"
@@ -216,6 +216,7 @@ const Home = () => {
                 const reader = new FileReader()
                 reader.onload = (event) => {
                     setJobDescription(event.target.result)
+                    setSelectedJdFile(file)
                 }
                 reader.readAsText(file)
             } else {
@@ -229,12 +230,6 @@ const Home = () => {
     const isValid = jobDescription.trim().length > 0 &&
         ((resumeTab === "file" && selectedFile !== null) || (resumeTab === "text" && selfDescription.trim().length > 0))
 
-    // Stats calculations
-    const completedSessions = reports?.length || 0
-    const avgScore = reports?.length > 0
-        ? Math.round(reports.reduce((sum, r) => sum + (r.matchScore || 0), 0) / reports.length)
-        : 0
-    const hoursSaved = completedSessions * 4
 
     if (loading) {
         return (
@@ -270,7 +265,7 @@ const Home = () => {
         <div className="min-h-screen bg-background text-on-surface flex font-sans">
 
             {/* Sidebar Navigation */}
-            <aside className={`fixed inset-y-0 left-0 z-40 w-52 bg-surface-container-lowest border-r border-outline-variant py-md px-sm flex flex-col transition-transform duration-300 md:translate-x-0 ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 left-0 z-40 w-60 bg-surface-container-lowest border-r border-outline-variant py-md px-sm flex flex-col transition-transform duration-300 md:translate-x-0 ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="mb-md px-sm flex items-center justify-between group cursor-pointer">
                     <div className="flex items-center gap-sm">
                         <LogoIcon className="w-8 h-8 transition-transform duration-300 group-hover:scale-105" />
@@ -322,10 +317,10 @@ const Home = () => {
             )}
 
             {/* Main Content Area */}
-            <main className="flex-1 md:ml-52 min-h-screen flex flex-col">
+            <main className="flex-1 md:ml-60 min-h-screen flex flex-col">
 
                 {/* Top Header */}
-                <header className="flex justify-between items-center h-14 w-full px-margin-desktop bg-surface-container-lowest sticky top-0 border-b border-outline-variant z-30">
+                <header className="flex justify-between items-center h-16 w-full px-8 md:px-10 bg-surface-container-lowest sticky top-0 border-b border-outline-variant z-30">
                     <div className="flex items-center gap-md">
                         <button className="md:hidden text-on-surface-variant cursor-pointer" onClick={() => setMobileSidebarOpen(true)}>
                             <Bars3Icon className="w-6 h-6" />
@@ -354,24 +349,13 @@ const Home = () => {
                 </header>
 
                 {/* Dashboard Scrollable Body */}
-                <div className="max-w-max-width w-full mx-auto px-margin-desktop py-8 space-y-8 flex-1">
+                <div className="max-w-max-width w-full mx-auto px-margin-desktop py-6 space-y-6 flex-1">
 
                     {/* Hero Section */}
-                    <section className="relative max-w-3xl pt-4 pb-2">
+                    <section className="relative max-w-3xl pt-6 pb-2">
                         {/* Decorative ambient background glows */}
                         <div className="absolute -top-12 -left-12 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
                         <div className="absolute top-4 -right-16 w-48 h-48 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none -z-10" />
-
-                        {/* Premium Enterprise SaaS Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: -8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-[11px] font-bold text-primary mb-4 select-none tracking-wider uppercase shadow-[0_1px_2px_rgba(0,80,180,0.02)]"
-                        >
-                            <SparklesIcon className="w-3.5 h-3.5 text-primary animate-pulse" />
-                            <span>Enterprise Preparation Intelligence</span>
-                        </motion.div>
 
                         <motion.h2
                             variants={headingContainerVariants}
@@ -408,94 +392,8 @@ const Home = () => {
                         </motion.p>
                     </section>
 
-                    {/* Quick Stats Dashboard Bar */}
-                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        
-                        {/* Session Activity Card */}
-                        <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-5 flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.015)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-primary/2 rounded-full blur-xl group-hover:bg-primary/5 transition-colors pointer-events-none" />
-                            <div className="flex items-center gap-4">
-                                <div className="w-11 h-11 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                                    <RocketLaunchIcon className="w-5.5 h-5.5" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Session Activity</p>
-                                    <h4 className="text-xl md:text-2xl font-extrabold text-on-surface mt-0.5 tracking-tight">{completedSessions} Completed</h4>
-                                </div>
-                                <span className="text-primary bg-primary/5 border border-primary/10 px-2 py-0.5 rounded text-[10px] font-bold">Top 5%</span>
-                            </div>
-                            <div className="mt-4 pt-4 border-t border-outline-variant/30">
-                                <div className="w-full bg-surface-container h-1 rounded-full overflow-hidden">
-                                    <div 
-                                        className="bg-primary h-full rounded-full transition-all duration-1000" 
-                                        style={{ width: `${Math.min(100, (completedSessions / 10) * 100)}%` }}
-                                    ></div>
-                                </div>
-                                <div className="flex justify-between items-center text-[10px] text-on-surface-variant/75 font-semibold mt-2">
-                                    <span>Target Progress: {completedSessions}/10 sessions</span>
-                                    <span>{completedSessions >= 10 ? "Goal Met! 🎉" : "Keep practicing"}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Average Score Card */}
-                        <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-5 flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.015)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-tertiary/2 rounded-full blur-xl group-hover:bg-tertiary/5 transition-colors pointer-events-none" />
-                            <div className="flex items-center gap-4">
-                                <div className="w-11 h-11 rounded-xl bg-tertiary/5 border border-tertiary/10 flex items-center justify-center text-tertiary flex-shrink-0">
-                                    <ClipboardDocumentListIcon className="w-5.5 h-5.5" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Average Match</p>
-                                    <h4 className="text-xl md:text-2xl font-extrabold text-on-surface mt-0.5 tracking-tight">{avgScore}%</h4>
-                                </div>
-                                <span className="text-tertiary bg-tertiary/5 border border-tertiary/10 px-2 py-0.5 rounded text-[10px] font-bold">Stable</span>
-                            </div>
-                            <div className="mt-4 pt-4 border-t border-outline-variant/30">
-                                <div className="w-full bg-surface-container h-1 rounded-full overflow-hidden">
-                                    <div 
-                                        className="bg-tertiary h-full rounded-full transition-all duration-1000" 
-                                        style={{ width: `${avgScore}%` }}
-                                    ></div>
-                                </div>
-                                <div className="flex justify-between items-center text-[10px] text-on-surface-variant/75 font-semibold mt-2">
-                                    <span>Target Performance: 80%</span>
-                                    <span>{avgScore >= 80 ? "Optimal Alignment" : "Developing competency"}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Hours Saved Card */}
-                        <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-5 flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.015)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/2 rounded-full blur-xl group-hover:bg-emerald-500/5 transition-colors pointer-events-none" />
-                            <div className="flex items-center gap-4">
-                                <div className="w-11 h-11 rounded-xl bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center text-emerald-600 flex-shrink-0">
-                                    <ClockIcon className="w-5.5 h-5.5" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Preparation Velocity</p>
-                                    <h4 className="text-xl md:text-2xl font-extrabold text-on-surface mt-0.5 tracking-tight">{hoursSaved} hrs saved</h4>
-                                </div>
-                                <span className="text-emerald-600 bg-emerald-500/5 border border-emerald-500/10 px-2 py-0.5 rounded text-[10px] font-bold">Efficient</span>
-                            </div>
-                            <div className="mt-4 pt-4 border-t border-outline-variant/30">
-                                <div className="w-full bg-surface-container h-1 rounded-full overflow-hidden">
-                                    <div 
-                                        className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full transition-all duration-1000" 
-                                        style={{ width: `${Math.min(100, (hoursSaved / 40) * 100)}%` }}
-                                    ></div>
-                                </div>
-                                <div className="flex justify-between items-center text-[10px] text-on-surface-variant/75 font-semibold mt-2">
-                                    <span>Equivalent Study Saving</span>
-                                    <span>High ROI</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-
                     {/* Upload Zone & Inputs */}
-                    <section id="upload-section" className="space-y-md">
+                    <section id="upload-section" className="space-y-6">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
  
                             {/* Card 1: Resume Upload / Bio */}
@@ -524,56 +422,63 @@ const Home = () => {
                                         </div>
 
                                         {resumeTab === "file" ? (
-                                            selectedFile ? (
-                                                <div className="flex flex-col items-center justify-center p-8 bg-surface-container-low/40 rounded-xl border border-outline-variant/40 transition-all">
-                                                    <div className="w-16 h-16 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mb-3">
-                                                        <DocumentTextIcon className="w-8 h-8 text-primary stroke-[1.8]" />
-                                                    </div>
-                                                    <h4 className="font-bold text-on-surface text-center line-clamp-1 max-w-[250px]">{selectedFile.name}</h4>
-                                                    <p className="text-xs text-on-surface-variant/80 font-semibold mt-1">{(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
+                                            <div className="space-y-2">
+                                                {selectedFile ? (
+                                                    <div className="flex flex-col items-center justify-center h-52 bg-surface-container-low/40 rounded-xl border border-outline-variant/40 transition-all">
+                                                        <div className="w-10 h-10 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mb-2">
+                                                            <DocumentTextIcon className="w-5.5 h-5.5 text-primary stroke-[1.8]" />
+                                                        </div>
+                                                        <h4 className="font-bold text-on-surface text-center line-clamp-1 max-w-[200px] text-body-sm">{selectedFile.name}</h4>
+                                                        <p className="text-[10px] text-on-surface-variant/80 font-bold mt-0.5">{(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
 
-                                                    <div className="flex items-center gap-1.5 mt-4 bg-surface-container-lowest border border-outline-variant px-4 py-1.5 rounded-full text-xs font-bold text-primary shadow-sm">
-                                                        <CheckCircleIcon className="w-4.5 h-4.5 text-emerald-500 flex-shrink-0" />
-                                                        Uploaded &amp; Verified
-                                                    </div>
+                                                        <div className="flex items-center gap-1 mt-2.5 bg-surface-container-lowest border border-outline-variant px-3 py-1 rounded-full text-[10px] font-bold text-primary shadow-sm">
+                                                            <CheckCircleIcon className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                                                            Uploaded &amp; Verified
+                                                        </div>
 
-                                                    <button
-                                                        onClick={() => setSelectedFile(null)}
-                                                        className="mt-4 flex items-center gap-1.5 text-xs text-error font-bold hover:text-error/80 transition-colors cursor-pointer"
+                                                        <button
+                                                            onClick={() => setSelectedFile(null)}
+                                                            className="mt-2.5 flex items-center gap-1.5 text-[10px] text-error font-bold hover:text-error/80 transition-colors cursor-pointer"
+                                                        >
+                                                            <TrashIcon className="w-3.5 h-3.5" />
+                                                            Remove CV
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        onDragOver={handleResumeDragOver}
+                                                        onDragLeave={handleResumeDragLeave}
+                                                        onDrop={handleResumeDrop}
+                                                        className="group relative flex flex-col items-center justify-center h-52 rounded-xl upload-dashed transition-all cursor-pointer"
                                                     >
-                                                        <TrashIcon className="w-4 h-4" />
-                                                        Remove CV
-                                                    </button>
-                                                </div>
-                                            ) : (
-                                                <div
-                                                    onDragOver={handleResumeDragOver}
-                                                    onDragLeave={handleResumeDragLeave}
-                                                    onDrop={handleResumeDrop}
-                                                    className="group relative flex flex-col items-center justify-center p-10 rounded-xl upload-dashed transition-all cursor-pointer"
-                                                >
-                                                    <div className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:scale-105 transition-all duration-300">
-                                                        <DocumentTextIcon className="w-7 h-7 text-primary stroke-[1.8]" />
+                                                        <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-3 group-hover:scale-105 transition-all duration-300">
+                                                            <DocumentTextIcon className="w-6 h-6 text-primary stroke-[1.8]" />
+                                                        </div>
+                                                        <h3 className="font-extrabold text-body-md text-on-surface mb-1">Drop your CV here</h3>
+                                                        <p className="text-xs text-on-surface-variant/80 font-semibold">PDF, DOCX up to 10MB</p>
+                                                        <input
+                                                            type="file"
+                                                            accept=".pdf,.docx"
+                                                            onChange={handleResumeFileChange}
+                                                            className="absolute inset-0 opacity-0 cursor-pointer"
+                                                        />
                                                     </div>
-                                                    <h3 className="font-extrabold text-body-md text-on-surface mb-1">Drop your CV here</h3>
-                                                    <p className="text-xs text-on-surface-variant/80 font-semibold">PDF, DOCX up to 10MB</p>
-                                                    <input
-                                                        type="file"
-                                                        accept=".pdf,.docx"
-                                                        onChange={handleResumeFileChange}
-                                                        className="absolute inset-0 opacity-0 cursor-pointer"
-                                                    />
+                                                )}
+                                                <div className="flex justify-between items-center text-xs px-1 min-h-[20px]">
+                                                    <span className="text-on-surface-variant/75 font-semibold">
+                                                        {selectedFile ? "CV analyzed successfully" : "PDF, DOCX formats supported"}
+                                                    </span>
                                                 </div>
-                                            )
+                                            </div>
                                         ) : (
                                             <div className="space-y-2">
                                                 <textarea
                                                     value={selfDescription}
                                                     onChange={(e) => setSelfDescription(e.target.value)}
-                                                    className="w-full h-44 p-4 bg-surface-container-low/10 rounded-xl border border-outline-variant focus:border-primary focus:ring-4 focus:ring-primary/5 text-body-sm transition-all outline-none resize-none placeholder-slate-400 font-medium text-slate-700"
+                                                    className="w-full h-52 p-4 bg-surface-container-low/10 rounded-xl border border-outline-variant focus:border-primary focus:ring-4 focus:ring-primary/5 text-body-sm transition-all outline-none resize-none placeholder-slate-400 font-medium text-slate-700"
                                                     placeholder="Briefly describe your professional background, skills, achievements, and career level..."
                                                 ></textarea>
-                                                <div className="flex justify-between items-center text-xs px-1">
+                                                <div className="flex justify-between items-center text-xs px-1 min-h-[20px]">
                                                     <span className="text-on-surface-variant/75 font-semibold">Include details on skills &amp; experience</span>
                                                     <span className="text-on-surface-variant/80 font-bold">{selfDescription.length} characters</span>
                                                 </div>
@@ -617,11 +522,11 @@ const Home = () => {
                                                 <textarea
                                                     value={jobDescription}
                                                     onChange={(e) => setJobDescription(e.target.value)}
-                                                    className="w-full h-44 p-4 bg-surface-container-low/10 rounded-xl border border-outline-variant focus:border-primary focus:ring-4 focus:ring-primary/5 text-body-sm transition-all outline-none resize-none placeholder-slate-400 font-medium text-slate-700"
+                                                    className="w-full h-52 p-4 bg-surface-container-low/10 rounded-xl border border-outline-variant focus:border-primary focus:ring-4 focus:ring-primary/5 text-body-sm transition-all outline-none resize-none placeholder-slate-400 font-medium text-slate-700"
                                                     placeholder="Paste the target job description details here. Specify key tech stacks, tasks, and requirements..."
                                                     maxLength={5000}
                                                 ></textarea>
-                                                <div className="flex justify-between items-center text-xs px-1">
+                                                <div className="flex justify-between items-center text-xs px-1 min-h-[20px]">
                                                     <span className="text-on-surface-variant/75 font-semibold">Minimum required</span>
                                                     <span className={`${jobDescription.length >= 4500 ? 'text-error font-bold animate-pulse' : 'text-on-surface-variant/80 font-bold'}`}>
                                                         {jobDescription.length.toLocaleString()} / 5,000 chars
@@ -629,38 +534,60 @@ const Home = () => {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div
-                                                onDragOver={handleJdDragOver}
-                                                onDragLeave={handleJdDragLeave}
-                                                onDrop={handleJdDrop}
-                                                className="group relative flex flex-col items-center justify-center p-10 rounded-xl upload-dashed transition-all cursor-pointer"
-                                            >
-                                                <div className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:scale-105 transition-all duration-300">
-                                                    <BriefcaseIcon className="w-7 h-7 text-primary stroke-[1.8]" />
+                                            <div className="space-y-2">
+                                                {selectedJdFile ? (
+                                                    <div className="flex flex-col items-center justify-center h-52 bg-surface-container-low/40 rounded-xl border border-outline-variant/40 transition-all">
+                                                        <div className="w-10 h-10 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mb-2">
+                                                            <BriefcaseIcon className="w-5.5 h-5.5 text-primary stroke-[1.8]" />
+                                                        </div>
+                                                        <h4 className="font-bold text-on-surface text-center line-clamp-1 max-w-[200px] text-body-sm">{selectedJdFile.name}</h4>
+                                                        <p className="text-[10px] text-on-surface-variant/80 font-bold mt-0.5">{(selectedJdFile.size / (1024 * 1024)).toFixed(2)} MB</p>
+
+                                                        <div className="flex items-center gap-1 mt-2.5 bg-surface-container-lowest border border-outline-variant px-3 py-1 rounded-full text-[10px] font-bold text-primary shadow-sm">
+                                                            <CheckCircleIcon className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                                                            Uploaded &amp; Verified
+                                                        </div>
+
+                                                        <button
+                                                            onClick={() => { setSelectedJdFile(null); setJobDescription(""); }}
+                                                            className="mt-2.5 flex items-center gap-1.5 text-[10px] text-error font-bold hover:text-error/80 transition-colors cursor-pointer"
+                                                        >
+                                                            <TrashIcon className="w-3.5 h-3.5" />
+                                                            Remove JD
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        onDragOver={handleJdDragOver}
+                                                        onDragLeave={handleJdDragLeave}
+                                                        onDrop={handleJdDrop}
+                                                        className="group relative flex flex-col items-center justify-center h-52 rounded-xl upload-dashed transition-all cursor-pointer"
+                                                    >
+                                                        <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-3 group-hover:scale-105 transition-all duration-300">
+                                                            <BriefcaseIcon className="w-6 h-6 text-primary stroke-[1.8]" />
+                                                        </div>
+                                                        <h3 className="font-extrabold text-body-md text-on-surface mb-1">Drop your JD file</h3>
+                                                        <p className="text-xs text-on-surface-variant/80 font-semibold">TXT, MD plain text files (Max 5MB)</p>
+                                                        <input
+                                                            type="file"
+                                                            accept=".txt,.md"
+                                                            onChange={handleJdFileChange}
+                                                            className="absolute inset-0 opacity-0 cursor-pointer"
+                                                        />
+                                                    </div>
+                                                )}
+                                                <div className="flex justify-between items-center text-xs px-1 min-h-[20px]">
+                                                    <span className="text-on-surface-variant/75 font-semibold">
+                                                        {selectedJdFile ? `JD content loaded successfully (${jobDescription.length} chars)` : "Plain text (.txt, .md) supported"}
+                                                    </span>
                                                 </div>
-                                                <h3 className="font-extrabold text-body-md text-on-surface mb-1">Drop your JD file</h3>
-                                                <p className="text-xs text-on-surface-variant/80 font-semibold">TXT, MD plain text files (Max 5MB)</p>
-                                                <input
-                                                    type="file"
-                                                    accept=".txt,.md"
-                                                    onChange={handleJdFileChange}
-                                                    className="absolute inset-0 opacity-0 cursor-pointer"
-                                                />
                                             </div>
                                         )}
                                     </div>
 
-                                    <div className="mt-4">
-                                        {jdTab === "file" && jobDescription && (
-                                            <div className="text-xs text-emerald-600 font-bold flex items-center gap-1.5 mb-2 px-1">
-                                                <CheckCircleIcon className="w-4 h-4 text-emerald-500 font-bold" />
-                                                JD content loaded successfully ({jobDescription.length} characters)
-                                            </div>
-                                        )}
-                                        <div className="text-xs text-on-surface-variant flex items-center gap-3 bg-surface-container-low/40 p-4 rounded-xl border border-outline-variant/30">
-                                            <ShieldCheckIcon className="w-5 h-5 text-primary flex-shrink-0 stroke-[1.8]" />
-                                            <span className="font-semibold text-on-surface-variant/90">AI extracts core skills, tech stacks, and role expectations instantly.</span>
-                                        </div>
+                                    <div className="mt-4 text-xs text-on-surface-variant flex items-center gap-3 bg-surface-container-low/40 p-4 rounded-xl border border-outline-variant/30">
+                                        <ShieldCheckIcon className="w-5 h-5 text-primary flex-shrink-0 stroke-[1.8]" />
+                                        <span className="font-semibold text-on-surface-variant/90">AI extracts core skills, tech stacks, and role expectations instantly.</span>
                                     </div>
                                 </div>
                             </div>
@@ -692,7 +619,7 @@ const Home = () => {
 
                     {/* Recent Preparation Plans */}
                     <section id="recent-plans" className="scroll-mt-20">
-                        <div className="flex items-center justify-between mb-md">
+                        <div className="flex items-center justify-between mb-4">
                             <h3 className="text-headline-md font-semibold text-on-surface tracking-tight">Recent Preparation Plans</h3>
                             <a href="#/" className="text-primary font-semibold flex items-center gap-xs hover:gap-sm transition-all text-body-sm">
                                 View All <ArrowRightIcon className="w-4 h-4" />

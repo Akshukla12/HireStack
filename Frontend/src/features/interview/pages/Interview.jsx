@@ -78,37 +78,38 @@ const TechnicalAccordionCard = ({ item, index }) => {
             layout
             initial={false}
             animate={{
-                borderColor: isOpen ? 'rgba(0, 80, 180, 0.18)' : 'rgba(226, 232, 240, 0.5)',
-                boxShadow: isOpen ? '0 12px 30px rgba(0,80,180,0.03)' : '0 4px 20px rgba(0,0,0,0.015)',
-                backgroundColor: isOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.8)'
+                borderColor: isOpen ? 'rgba(0, 80, 180, 0.25)' : 'rgba(226, 232, 240, 0.6)',
+                boxShadow: isOpen ? '0 12px 24px -10px rgba(0, 80, 180, 0.08), 0 4px 16px -10px rgba(0, 0, 0, 0.02)' : '0 2px 8px -4px rgba(0,0,0,0.02)',
+                backgroundColor: isOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'
             }}
-            transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-            className="relative border rounded-2xl overflow-hidden bg-surface-container-lowest group transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,80,180,0.04)] hover:border-primary/20"
+            whileHover={{ y: isOpen ? 0 : -2, borderColor: isOpen ? 'rgba(0, 80, 180, 0.25)' : 'rgba(0, 80, 180, 0.15)' }}
+            transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+            className="relative border rounded-2xl overflow-hidden bg-surface-container-lowest group transition-shadow duration-300"
         >
-            <div className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 ${isOpen ? 'bg-primary' : 'bg-transparent'}`} />
+            <div className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-500 ease-[0.25,1,0.5,1] ${isOpen ? 'bg-gradient-to-b from-primary to-blue-400 h-full' : 'bg-transparent h-0'}`} />
             <button
-                className="w-full p-5 md:p-6 pl-6 md:pl-7 flex items-start justify-between gap-4 text-left focus:outline-none cursor-pointer select-none transition-colors hover:bg-surface-container-low/20"
+                className={`w-full p-5 md:p-6 pl-6 md:pl-7 flex items-start justify-between gap-4 text-left focus:outline-none cursor-pointer select-none transition-colors duration-300 ${isOpen ? 'bg-slate-50/40' : 'hover:bg-slate-50/20'}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex flex-col pr-md">
                     <div className="flex flex-wrap items-center gap-2 mb-2.5">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider transition-colors group-hover:bg-primary/10">
                             Question 0{index + 1}
                         </span>
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant/80 text-[10px] font-bold">
                             Technical Assessment
                         </span>
                     </div>
-                    <h3 className="text-base md:text-[17px] font-semibold text-on-surface leading-snug tracking-tight text-slate-800">
+                    <h3 className="text-base md:text-[17px] font-semibold text-on-surface leading-snug tracking-tight text-slate-800 transition-colors group-hover:text-black">
                         {item.question}
                     </h3>
                 </div>
                 <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0, y: isOpen ? 0 : 1 }}
-                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
-                    className={`flex-shrink-0 mt-1.5 ${isOpen ? 'text-primary' : 'text-on-surface-variant'}`}
+                    animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.05 : 1 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                    className={`flex-shrink-0 mt-1.5 p-1 rounded-lg transition-colors ${isOpen ? 'text-primary bg-primary/5' : 'text-on-surface-variant group-hover:text-slate-800'}`}
                 >
-                    <ChevronDownIcon className="w-5 h-5 stroke-[2.2]" />
+                    <ChevronDownIcon className="w-4 h-4 stroke-[2.5]" />
                 </motion.div>
             </button>
 
@@ -118,10 +119,10 @@ const TechnicalAccordionCard = ({ item, index }) => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ type: 'spring', duration: 0.38, bounce: 0 }}
+                        transition={{ duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                        <div className="px-5 pb-5 md:px-6 md:pb-6 flex flex-col gap-4 border-t border-outline-variant/20 pt-5 bg-surface-bright/30 overflow-hidden">
-                            <div className="p-5 bg-surface-container-lowest border border-outline-variant/30 border-l-3 border-primary rounded-xl flex flex-col gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.005)]">
+                        <div className="px-5 pb-5 md:px-6 md:pb-6 flex flex-col gap-4 border-t border-outline-variant/20 pt-5 bg-gradient-to-b from-slate-50/30 to-transparent overflow-hidden">
+                            <div className="p-5 bg-surface-container-lowest border border-outline-variant/30 border-l-3 border-primary rounded-xl flex flex-col gap-2 shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-md hover:border-primary/20 transition-all duration-300">
                                 <div className="flex items-center gap-1.5 text-primary select-none">
                                     <CheckCircleIcon className="w-4.5 h-4.5" />
                                     <h4 className="text-[11px] font-bold uppercase tracking-wider">Model Answer</h4>
@@ -129,7 +130,7 @@ const TechnicalAccordionCard = ({ item, index }) => {
                                 <p className="font-body-md text-on-surface text-sm leading-relaxed text-slate-700 max-w-3xl">{item.answer}</p>
                             </div>
 
-                            <div className="p-5 bg-primary/[0.015] border border-outline-variant/30 border-l-3 border-primary-container rounded-xl flex flex-col gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.005)]">
+                            <div className="p-5 bg-primary/[0.015] border border-outline-variant/30 border-l-3 border-primary-container rounded-xl flex flex-col gap-2 shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-md hover:border-primary/20 transition-all duration-300">
                                 <div className="flex items-center gap-1.5 select-none">
                                     <LightBulbIcon className="w-4.5 h-4.5 text-primary" />
                                     <span className="text-[11px] font-bold uppercase tracking-wider text-primary">AI Insights &amp; Intention</span>
@@ -163,31 +164,32 @@ const BehavioralAccordionCard = ({ item, index }) => {
             layout
             initial={false}
             animate={{
-                borderColor: isOpen ? 'rgba(0, 80, 180, 0.18)' : 'rgba(226, 232, 240, 0.5)',
-                boxShadow: isOpen ? '0 12px 30px rgba(0,80,180,0.03)' : '0 4px 20px rgba(0,0,0,0.015)',
-                backgroundColor: isOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.8)'
+                borderColor: isOpen ? 'rgba(0, 80, 180, 0.25)' : 'rgba(226, 232, 240, 0.6)',
+                boxShadow: isOpen ? '0 12px 24px -10px rgba(0, 80, 180, 0.08), 0 4px 16px -10px rgba(0, 0, 0, 0.02)' : '0 2px 8px -4px rgba(0,0,0,0.02)',
+                backgroundColor: isOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'
             }}
-            transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-            className="relative border rounded-2xl overflow-hidden bg-surface-container-lowest group transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,80,180,0.04)] hover:border-primary/20"
+            whileHover={{ y: isOpen ? 0 : -2, borderColor: isOpen ? 'rgba(0, 80, 180, 0.25)' : 'rgba(0, 80, 180, 0.15)' }}
+            transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+            className="relative border rounded-2xl overflow-hidden bg-surface-container-lowest group transition-shadow duration-300"
         >
-            <div className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 ${isOpen ? 'bg-primary' : 'bg-transparent'}`} />
+            <div className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-500 ease-[0.25,1,0.5,1] ${isOpen ? 'bg-gradient-to-b from-primary to-blue-400 h-full' : 'bg-transparent h-0'}`} />
             <button
-                className="w-full text-left p-5 md:p-6 pl-6 md:pl-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer select-none transition-colors hover:bg-surface-container-low/20"
+                className={`w-full text-left p-5 md:p-6 pl-6 md:pl-7 flex items-start justify-between gap-4 focus:outline-none cursor-pointer select-none transition-colors duration-300 ${isOpen ? 'bg-slate-50/40' : 'hover:bg-slate-50/20'}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex flex-col flex-1 min-w-0 pr-2">
                     <div className="flex flex-wrap items-center gap-2 mb-2.5 select-none">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider transition-colors group-hover:bg-primary/10">
                             Question 0{index + 1}
                         </span>
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant/80 text-[10px] font-bold">
                             Behavioral Assessment
                         </span>
-                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${comp.color}`}>
+                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold border transition-transform duration-300 group-hover:scale-[1.02] ${comp.color}`}>
                             {comp.category}
                         </span>
                     </div>
-                    <h3 className="text-base md:text-[17px] font-semibold text-on-surface leading-snug tracking-tight text-slate-800 max-w-3xl">
+                    <h3 className="text-base md:text-[17px] font-semibold text-on-surface leading-snug tracking-tight text-slate-800 transition-colors group-hover:text-black max-w-3xl">
                         {item.question}
                     </h3>
                     <div className="flex items-center gap-1.5 mt-2 text-[10px] text-on-surface-variant/60 font-bold uppercase tracking-wider select-none">
@@ -197,7 +199,7 @@ const BehavioralAccordionCard = ({ item, index }) => {
 
                 <div className="flex items-center gap-3.5 flex-shrink-0 mt-1 md:mt-1.5">
                     {index % 2 === 0 ? (
-                        <span className="inline-flex items-center bg-emerald-500/[0.04] border border-emerald-500/10 text-emerald-600 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase select-none">
+                        <span className="inline-flex items-center bg-emerald-500/[0.04] border border-emerald-500/10 text-emerald-600 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase select-none transition-transform duration-300 group-hover:scale-[1.02]">
                             <span className="relative flex h-1.5 w-1.5 mr-1.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
@@ -205,17 +207,17 @@ const BehavioralAccordionCard = ({ item, index }) => {
                             Strong Fit
                         </span>
                     ) : (
-                        <span className="inline-flex items-center bg-blue-500/[0.04] border border-blue-500/10 text-blue-600 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase select-none">
+                        <span className="inline-flex items-center bg-blue-500/[0.04] border border-blue-500/10 text-blue-600 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase select-none transition-transform duration-300 group-hover:scale-[1.02]">
                             <span className="h-1.5 w-1.5 rounded-full bg-blue-400 mr-1.5"></span>
                             Solid Fit
                         </span>
                     )}
                     <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0, y: isOpen ? 0 : 1 }}
-                        transition={{ type: 'spring', stiffness: 220, damping: 24 }}
-                        className={`flex-shrink-0 ${isOpen ? 'text-primary' : 'text-on-surface-variant'}`}
+                        animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.05 : 1 }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                        className={`flex-shrink-0 p-1 rounded-lg transition-colors ${isOpen ? 'text-primary bg-primary/5' : 'text-on-surface-variant group-hover:text-slate-800'}`}
                     >
-                        <ChevronDownIcon className="w-5 h-5 stroke-[2.2]" />
+                        <ChevronDownIcon className="w-4 h-4 stroke-[2.5]" />
                     </motion.div>
                 </div>
             </button>
@@ -226,13 +228,13 @@ const BehavioralAccordionCard = ({ item, index }) => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ type: 'spring', duration: 0.38, bounce: 0 }}
+                        transition={{ duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                        <div className="px-5 pb-5 md:px-6 md:pb-6 flex flex-col gap-4 border-t border-outline-variant/20 pt-5 bg-surface-bright/30 overflow-hidden">
+                        <div className="px-5 pb-5 md:px-6 md:pb-6 flex flex-col gap-4 border-t border-outline-variant/20 pt-5 bg-gradient-to-b from-slate-50/30 to-transparent overflow-hidden">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-surface-container-lowest/80 p-6 rounded-xl border border-outline-variant/40 border-l-3 border-l-primary/60 shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-3 hover:bg-surface-container-lowest hover:border-primary/20 transition-all duration-300">
+                                <div className="bg-surface-container-lowest/80 p-6 rounded-xl border border-outline-variant/40 border-l-3 border-l-primary/60 shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-3 hover:bg-surface-container-lowest hover:border-primary/20 hover:shadow-md transition-all duration-300">
                                     <div className="flex items-center gap-2 select-none">
-                                        <div className="w-7 h-7 rounded bg-primary/5 text-primary flex items-center justify-center flex-shrink-0">
+                                        <div className="w-7 h-7 rounded bg-primary/5 text-primary flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                                             <ShieldCheckIcon className="w-4 h-4" />
                                         </div>
                                         <div className="flex flex-col">
@@ -243,9 +245,9 @@ const BehavioralAccordionCard = ({ item, index }) => {
                                     <p className="text-[13px] text-slate-600 leading-relaxed font-medium max-w-2xl mt-0.5">{item.intention}</p>
                                 </div>
 
-                                <div className="bg-surface-container-lowest/80 p-6 rounded-xl border border-outline-variant/40 border-l-3 border-l-indigo-500/60 shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-3 hover:bg-surface-container-lowest hover:border-indigo-500/20 transition-all duration-300">
+                                <div className="bg-surface-container-lowest/80 p-6 rounded-xl border border-outline-variant/40 border-l-3 border-l-indigo-500/60 shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-3 hover:bg-surface-container-lowest hover:border-indigo-500/20 hover:shadow-md transition-all duration-300">
                                     <div className="flex items-center gap-2 select-none">
-                                        <div className="w-7 h-7 rounded bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-7 h-7 rounded bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                                             <BoltIcon className="w-4 h-4" />
                                         </div>
                                         <div className="flex flex-col">
@@ -257,8 +259,8 @@ const BehavioralAccordionCard = ({ item, index }) => {
                                 </div>
                             </div>
 
-                            <div className="p-5 bg-gradient-to-r from-primary/[0.03] to-blue-500/[0.01] border border-primary/10 border-l-3 border-primary rounded-xl flex items-start gap-4 shadow-[0_1px_3px_rgba(0,80,180,0.005)] select-none">
-                                <div className="bg-primary/10 p-2 rounded-lg text-primary flex items-center justify-center flex-shrink-0">
+                            <div className="p-5 bg-gradient-to-r from-primary/[0.03] to-blue-500/[0.01] border border-primary/10 border-l-3 border-primary rounded-xl flex items-start gap-4 shadow-[0_1px_3px_rgba(0,80,180,0.005)] hover:shadow-md hover:border-primary/20 transition-all duration-300 select-none">
+                                <div className="bg-primary/10 p-2 rounded-lg text-primary flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                                     <LightBulbIcon className="w-5 h-5" />
                                 </div>
                                 <div className="flex-1">
@@ -291,6 +293,7 @@ const Interview = () => {
         const saved = localStorage.getItem(`interview-progress-${interviewId}`)
         return saved ? JSON.parse(saved) : {}
     })
+    const [expandedRoadmapDays, setExpandedRoadmapDays] = useState({})
 
     useEffect(() => {
         if (interviewId) {
@@ -308,6 +311,18 @@ const Interview = () => {
         }
         setCompletedTasks(updated)
         localStorage.setItem(`interview-progress-${interviewId}`, JSON.stringify(updated))
+    }
+
+    const toggleRoadmapDay = (dayNum, defaultState) => {
+        setExpandedRoadmapDays(prev => ({
+            ...prev,
+            [dayNum]: prev[dayNum] !== undefined ? !prev[dayNum] : !defaultState
+        }))
+    }
+
+    const getInitials = (name) => {
+        if (!name) return 'U'
+        return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
     }
 
     if (loading || !report) {
@@ -337,17 +352,17 @@ const Interview = () => {
     const totalTasks = report.preparationPlan.reduce((sum, day) => sum + day.tasks.length, 0)
     const completedCount = Object.keys(completedTasks).filter(key => completedTasks[key]).length
     const progressPct = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0
-
-    const getInitials = (name) => {
-        if (!name) return 'U'
-        return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
-    }
+    const activeDayIdx = report.preparationPlan.findIndex(d => {
+        const total = d.tasks.length
+        const done = d.tasks.filter((_, tIdx) => !!completedTasks[`${d.day}-${tIdx}`]).length
+        return done < total
+    })
 
     return (
         <div className="min-h-screen bg-background text-on-surface flex font-sans">
 
             {/* Sidebar Navigation */}
-            <aside className={`fixed inset-y-0 left-0 z-40 w-52 bg-surface-container-lowest border-r border-outline-variant py-md px-sm flex flex-col transition-transform duration-300 md:translate-x-0 ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 left-0 z-40 w-60 bg-surface-container-lowest border-r border-outline-variant py-md px-sm flex flex-col transition-transform duration-300 md:translate-x-0 ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="mb-md px-sm flex items-center justify-between group cursor-pointer">
                     <div className="flex items-center gap-sm">
                         <LogoIcon className="w-8 h-8 transition-transform duration-300 group-hover:scale-105" />
@@ -377,43 +392,37 @@ const Interview = () => {
 
                     <button
                         onClick={() => { setActiveNav('technical'); setMobileSidebarOpen(false); }}
-                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${
-                            activeNav === 'technical'
+                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${activeNav === 'technical'
                                 ? 'bg-secondary-container text-on-secondary-container font-semibold border border-outline-variant/10 shadow-[0_1px_2px_rgba(0,0,0,0.02)]'
                                 : 'border border-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                        }`}
+                            }`}
                     >
-                        <CodeBracketIcon className={`w-5 h-5 transition-colors duration-200 ${
-                            activeNav === 'technical' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
-                        }`} />
+                        <CodeBracketIcon className={`w-5 h-5 transition-colors duration-200 ${activeNav === 'technical' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
+                            }`} />
                         <span className="font-semibold text-label-md">Technical Deep-Dive</span>
                     </button>
 
                     <button
                         onClick={() => { setActiveNav('behavioral'); setMobileSidebarOpen(false); }}
-                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${
-                            activeNav === 'behavioral'
+                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${activeNav === 'behavioral'
                                 ? 'bg-secondary-container text-on-secondary-container font-semibold border border-outline-variant/10 shadow-[0_1px_2px_rgba(0,0,0,0.02)]'
                                 : 'border border-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                        }`}
+                            }`}
                     >
-                        <LightBulbIcon className={`w-5 h-5 transition-colors duration-200 ${
-                            activeNav === 'behavioral' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
-                        }`} />
+                        <LightBulbIcon className={`w-5 h-5 transition-colors duration-200 ${activeNav === 'behavioral' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
+                            }`} />
                         <span className="font-semibold text-label-md">Behavioral Insights</span>
                     </button>
 
                     <button
                         onClick={() => { setActiveNav('roadmap'); setMobileSidebarOpen(false); }}
-                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${
-                            activeNav === 'roadmap'
+                        className={`group w-full flex items-center gap-sm rounded-lg px-sm py-xs transition-all text-left cursor-pointer duration-200 ${activeNav === 'roadmap'
                                 ? 'bg-secondary-container text-on-secondary-container font-semibold border border-outline-variant/10 shadow-[0_1px_2px_rgba(0,0,0,0.02)]'
                                 : 'border border-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                        }`}
+                            }`}
                     >
-                        <ChartBarIcon className={`w-5 h-5 transition-colors duration-200 ${
-                            activeNav === 'roadmap' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
-                        }`} />
+                        <ChartBarIcon className={`w-5 h-5 transition-colors duration-200 ${activeNav === 'roadmap' ? 'text-on-secondary-container' : 'text-on-surface-variant/80 group-hover:text-on-surface'
+                            }`} />
                         <span className="font-semibold text-label-md">Success Roadmap</span>
                     </button>
                 </nav>
@@ -443,16 +452,14 @@ const Interview = () => {
             )}
 
             {/* Main Content Canvas */}
-            <main className="flex-1 md:ml-52 min-h-screen flex flex-col">
+            <main className="flex-1 md:ml-60 min-h-screen flex flex-col">
 
                 {/* Top Header */}
-                <header className="flex justify-between items-center h-14 w-full px-margin-desktop bg-surface-container-lowest sticky top-0 border-b border-outline-variant z-35">
+                <header className="flex justify-between items-center h-16 w-full px-8 md:px-10 bg-surface-container-lowest sticky top-0 border-b border-outline-variant z-35">
                     <div className="flex items-center gap-md">
                         <button className="md:hidden text-on-surface-variant" onClick={() => setMobileSidebarOpen(true)}>
                             <Bars3Icon className="w-6 h-6" />
                         </button>
-
-
                     </div>
 
                     <div className="flex items-center gap-md">
@@ -460,19 +467,19 @@ const Interview = () => {
                         <nav className="hidden md:flex items-center gap-lg">
                             <button
                                 onClick={() => setActiveNav('technical')}
-                                className={`text-body-md font-medium pb-1 transition-all cursor-pointer ${activeNav === 'technical' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
+                                className={`text-body-md font-medium pb-1.5 transition-all cursor-pointer ${activeNav === 'technical' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
                             >
                                 Technical
                             </button>
                             <button
                                 onClick={() => setActiveNav('behavioral')}
-                                className={`text-body-md font-medium pb-1 transition-all cursor-pointer ${activeNav === 'behavioral' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
+                                className={`text-body-md font-medium pb-1.5 transition-all cursor-pointer ${activeNav === 'behavioral' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
                             >
                                 Behavioral
                             </button>
                             <button
                                 onClick={() => setActiveNav('roadmap')}
-                                className={`text-body-md font-medium pb-1 transition-all cursor-pointer ${activeNav === 'roadmap' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
+                                className={`text-body-md font-medium pb-1.5 transition-all cursor-pointer ${activeNav === 'roadmap' ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary'}`}
                             >
                                 Roadmap
                             </button>
@@ -495,7 +502,7 @@ const Interview = () => {
 
                 {/* Sub-view Content Render */}
                 {activeNav === 'technical' && (
-                    <div className="flex flex-col lg:flex-row gap-gutter py-6 px-margin-desktop max-w-max-width mx-auto w-full">
+                    <div className="flex flex-col lg:flex-row gap-8 py-6 px-8 md:px-10 max-w-[1400px] mx-auto w-full">
 
                         {/* Left Column: Content */}
                         <section className="flex-1 flex flex-col gap-6 min-w-0">
@@ -532,7 +539,7 @@ const Interview = () => {
                         </section>
 
                         {/* Right Column: Sidebar Widgets */}
-                        <aside className="w-full lg:w-80 flex flex-col gap-4 flex-shrink-0 lg:sticky lg:top-20 lg:self-start">
+                        <aside className="w-full lg:w-[340px] flex flex-col gap-6 flex-shrink-0 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto custom-scrollbar pr-1">
 
                             {/* Match Score Widget */}
                             <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col gap-5 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
@@ -546,7 +553,7 @@ const Interview = () => {
                                     </span>
                                 </div>
 
-                                <div className="relative flex items-center justify-center py-2 select-none">
+                                <div className="relative flex items-center justify-center py-5 select-none">
                                     <svg className="w-32 h-32 transform -rotate-90">
                                         <defs>
                                             <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -619,151 +626,141 @@ const Interview = () => {
                             </div>
 
                             {/* Skill Gaps Widget */}
-                             <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col gap-5 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
-                                 <div className="flex justify-between items-start">
-                                     <div className="flex flex-col">
-                                         <span className="text-[10px] text-primary uppercase tracking-wider font-extrabold">Growth Areas</span>
-                                         <h4 className="text-lg font-bold text-on-surface mt-0.5">Identified Gaps</h4>
-                                     </div>
-                                     <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold">
-                                         Priority Focus
-                                     </span>
-                                 </div>
-
-                                 {report.skillGaps && report.skillGaps.length > 0 ? (
-                                     <div className="flex flex-col gap-4">
-                                         {/* High Severity Gaps */}
-                                         {report.skillGaps.filter(g => g.severity === 'high').length > 0 && (
-                                             <div className="flex flex-col gap-2">
-                                                 <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
-                                                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
-                                                     <span className="text-[10px] text-red-700 dark:text-red-400 font-extrabold uppercase tracking-wider">Critical Focus</span>
-                                                     <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Immediate Action</span>
-                                                 </div>
-                                                 <div className="flex flex-wrap gap-2">
-                                                     {report.skillGaps.filter(g => g.severity === 'high').map((gap, i) => (
-                                                         <span
-                                                             key={i}
-                                                             className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-error-container/30 border border-error-container/60 text-on-error-container shadow-[0_1px_2px_rgba(147,0,10,0.02)] transition-all hover:bg-error-container/50"
-                                                         >
-                                                             <ExclamationCircleIcon className="w-3.5 h-3.5 flex-shrink-0" />
-                                                             {gap.skill}
-                                                         </span>
-                                                     ))}
-                                                 </div>
-                                             </div>
-                                         )}
-
-                                         {/* Medium Severity Gaps */}
-                                         {report.skillGaps.filter(g => g.severity === 'medium').length > 0 && (
-                                             <div className="flex flex-col gap-2">
-                                                 <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
-                                                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
-                                                     <span className="text-[10px] text-amber-700 dark:text-amber-400 font-extrabold uppercase tracking-wider">Secondary Focus</span>
-                                                     <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Recommended</span>
-                                                 </div>
-                                                 <div className="flex flex-wrap gap-2">
-                                                     {report.skillGaps.filter(g => g.severity === 'medium').map((gap, i) => (
-                                                         <span
-                                                             key={i}
-                                                             className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-tertiary-fixed/30 border border-tertiary-fixed/60 text-on-tertiary-fixed shadow-[0_1px_2px_rgba(54,15,0,0.02)] transition-all hover:bg-tertiary-fixed/50"
-                                                         >
-                                                             <ArrowTrendingUpIcon className="w-3.5 h-3.5 flex-shrink-0" />
-                                                             {gap.skill}
-                                                         </span>
-                                                     ))}
-                                                 </div>
-                                             </div>
-                                         )}
-
-                                         {/* Low Severity Gaps */}
-                                         {report.skillGaps.filter(g => g.severity === 'low').length > 0 && (
-                                             <div className="flex flex-col gap-2">
-                                                 <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
-                                                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                                                     <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-extrabold uppercase tracking-wider">Minor Focus</span>
-                                                     <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Nice to Have</span>
-                                                 </div>
-                                                 <div className="flex flex-wrap gap-2">
-                                                     {report.skillGaps.filter(g => g.severity === 'low').map((gap, i) => (
-                                                         <span
-                                                             key={i}
-                                                             className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/20 dark:border-emerald-800/30 text-emerald-800 dark:text-emerald-300 shadow-[0_1px_2px_rgba(6,78,59,0.02)] transition-all hover:bg-emerald-500/20"
-                                                         >
-                                                             <CheckCircleIcon className="w-3.5 h-3.5 flex-shrink-0" />
-                                                             {gap.skill}
-                                                         </span>
-                                                     ))}
-                                                 </div>
-                                             </div>
-                                         )}
-                                     </div>
-                                 ) : (
-                                     <p className="text-xs text-on-surface-variant italic">No major skill gaps identified! Keep it up.</p>
-                                 )}
-
-                                 <div className="bg-surface-container-low/40 p-4 rounded-xl border border-outline-variant/30">
-                                     <p className="text-xs text-on-surface-variant/90 italic leading-relaxed">
-                                         "Recommended focus for the next 30 days: Deep-dive into identified gaps to meet high-level team expectations and optimize system reliability."
-                                     </p>
-                                 </div>
-                             </div>
-
-                            {/* Promo/Action Card */}
-                            <div className="relative bg-inverse-surface text-inverse-on-surface rounded-2xl p-6 overflow-hidden group shadow-sm">
-                                <div className="relative z-10 flex flex-col gap-3">
-                                    <h5 className="font-headline-sm text-base font-bold text-white">Ready to bridge the gap?</h5>
-                                    <p className="font-body-sm opacity-80 text-xs text-slate-300">Our AI coach created a custom study roadmap based on your assessment performance.</p>
-                                    <button
-                                        onClick={() => setActiveNav('roadmap')}
-                                        className="bg-primary text-on-primary w-full py-2.5 rounded-xl font-bold hover:opacity-90 transition-opacity cursor-pointer text-xs uppercase tracking-wider"
-                                    >
-                                        View My Roadmap
-                                    </button>
+                            <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col gap-5 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
+                                <div className="flex justify-between items-start">
+                                    <div className="flex flex-col">
+                                        <span className="text-[10px] text-primary uppercase tracking-wider font-extrabold">Growth Areas</span>
+                                        <h4 className="text-lg font-bold text-on-surface mt-0.5">Identified Gaps</h4>
+                                    </div>
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold">
+                                        Priority Focus
+                                    </span>
                                 </div>
-                                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+
+                                {report.skillGaps && report.skillGaps.length > 0 ? (
+                                    <div className="flex flex-col gap-4">
+                                        {/* High Severity Gaps */}
+                                        {report.skillGaps.filter(g => g.severity === 'high').length > 0 && (
+                                            <div className="flex flex-col gap-2">
+                                                <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                                                    <span className="text-[10px] text-red-700 dark:text-red-400 font-extrabold uppercase tracking-wider">Critical Focus</span>
+                                                    <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Immediate Action</span>
+                                                </div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {report.skillGaps.filter(g => g.severity === 'high').map((gap, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-error-container/30 border border-error-container/60 text-on-error-container shadow-[0_1px_2px_rgba(147,0,10,0.02)] transition-all hover:bg-error-container/50"
+                                                        >
+                                                            <ExclamationCircleIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                                                            {gap.skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Medium Severity Gaps */}
+                                        {report.skillGaps.filter(g => g.severity === 'medium').length > 0 && (
+                                            <div className="flex flex-col gap-2">
+                                                <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+                                                    <span className="text-[10px] text-amber-700 dark:text-amber-400 font-extrabold uppercase tracking-wider">Secondary Focus</span>
+                                                    <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Recommended</span>
+                                                </div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {report.skillGaps.filter(g => g.severity === 'medium').map((gap, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-tertiary-fixed/30 border border-tertiary-fixed/60 text-on-tertiary-fixed shadow-[0_1px_2px_rgba(54,15,0,0.02)] transition-all hover:bg-tertiary-fixed/50"
+                                                        >
+                                                            <ArrowTrendingUpIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                                                            {gap.skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Low Severity Gaps */}
+                                        {report.skillGaps.filter(g => g.severity === 'low').length > 0 && (
+                                            <div className="flex flex-col gap-2">
+                                                <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1.5">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                                                    <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-extrabold uppercase tracking-wider">Minor Focus</span>
+                                                    <span className="text-[9px] text-on-surface-variant/60 font-semibold ml-auto">Nice to Have</span>
+                                                </div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {report.skillGaps.filter(g => g.severity === 'low').map((gap, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/20 dark:border-emerald-800/30 text-emerald-800 dark:text-emerald-300 shadow-[0_1px_2px_rgba(6,78,59,0.02)] transition-all hover:bg-emerald-500/20"
+                                                        >
+                                                            <CheckCircleIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                                                            {gap.skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <p className="text-xs text-on-surface-variant italic">No major skill gaps identified! Keep it up.</p>
+                                )}
+
+                                <div className="bg-surface-container-low/40 p-4 rounded-xl border border-outline-variant/30">
+                                    <p className="text-xs text-on-surface-variant/90 italic leading-relaxed">
+                                        "Recommended focus for the next 30 days: Deep-dive into identified gaps to meet high-level team expectations and optimize system reliability."
+                                    </p>
+                                </div>
                             </div>
+
                         </aside>
                     </div>
                 )}
 
                 {activeNav === 'behavioral' && (
-                    <div className="flex-1 py-6 px-margin-desktop bg-background max-w-max-width mx-auto w-full flex flex-col gap-6 animate-fade-in">
+                    <div className="flex-1 py-6 px-8 md:px-10 bg-background max-w-[1400px] mx-auto w-full flex flex-col gap-8 animate-fade-in">
 
                         {/* Executive AI Assessment Dashboard Header */}
-                        <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.015)] relative overflow-hidden">
+                        <div className="bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/40 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.02)] relative overflow-hidden">
                             {/* Glow background accent */}
-                            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
+                            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-indigo-500/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
                             <div className="flex flex-col gap-3 max-w-2xl">
                                 <div className="flex flex-wrap items-center gap-2">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider">
                                         Executive Assessment
                                     </span>
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/10 text-emerald-600 text-[10px] font-bold uppercase tracking-wider">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/10 text-emerald-600 text-[10px] font-extrabold uppercase tracking-wider animate-pulse">
                                         Values Fit Verified
                                     </span>
                                 </div>
                                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-primary via-blue-700 to-indigo-600 bg-clip-text text-transparent pb-0.5">
                                     Behavioral Insights
                                 </h2>
-                                <p className="text-on-surface-variant/80 text-sm leading-relaxed max-w-[600px]">
-                                    Detailed psychometric mapping and scenario competency review. This dossier evaluates situational leadership, problem-solving integrity, and role alignment against standard organizational values.
+                                <p className="text-on-surface-variant/80 text-sm leading-relaxed max-w-[600px] font-medium">
+                                    AI-driven insights into leadership, adaptability, and communication.
                                 </p>
                             </div>
 
                             {/* Metadata Details Card */}
-                            <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[240px] bg-surface-container-low/40 p-4 rounded-xl border border-outline-variant/30">
-                                <div className="flex items-center gap-2 text-xs">
-                                    <BriefcaseIcon className="w-4 h-4 text-primary flex-shrink-0" />
-                                    <span className="text-on-surface-variant font-medium">Role:</span>
-                                    <span className="text-on-surface font-semibold ml-auto">{report.title}</span>
+                            <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3.5 min-w-[260px] bg-slate-50/60 p-5 rounded-xl border border-outline-variant/40 shadow-[0_1px_3px_rgba(0,0,0,0.01)] hover:border-primary/10 hover:bg-white transition-all duration-300">
+                                <div className="flex items-center gap-2.5 text-xs">
+                                    <div className="w-6 h-6 rounded bg-primary/5 text-primary flex items-center justify-center flex-shrink-0">
+                                        <BriefcaseIcon className="w-3.5 h-3.5" />
+                                    </div>
+                                    <span className="text-on-surface-variant/80 font-bold uppercase tracking-wider text-[9px]">Role:</span>
+                                    <span className="text-slate-800 font-extrabold ml-auto">{report.title}</span>
                                 </div>
-                                <div className="h-[1px] bg-outline-variant/40 hidden sm:block lg:block" />
-                                <div className="flex items-center gap-2 text-xs">
-                                    <CalendarIcon className="w-4 h-4 text-on-surface-variant/60 flex-shrink-0" />
-                                    <span className="text-on-surface-variant font-medium">Evaluation Date:</span>
-                                    <span className="text-on-surface font-semibold ml-auto">
+                                <div className="h-[1px] bg-outline-variant/30 hidden sm:block lg:block" />
+                                <div className="flex items-center gap-2.5 text-xs">
+                                    <div className="w-6 h-6 rounded bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0">
+                                        <CalendarIcon className="w-3.5 h-3.5" />
+                                    </div>
+                                    <span className="text-on-surface-variant/80 font-bold uppercase tracking-wider text-[9px]">Evaluation:</span>
+                                    <span className="text-slate-800 font-extrabold ml-auto">
                                         {new Date(report.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                                     </span>
                                 </div>
@@ -771,100 +768,112 @@ const Interview = () => {
                         </div>
 
                         {/* Analytics Blocks (Bento Header Section) */}
-                        <section className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                        <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                             {/* Culture Fit Score */}
-                            <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_15px_rgba(0,0,0,0.01)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/2 rounded-full blur-2xl group-hover:bg-primary/5 transition-colors" />
+                            <motion.div
+                                whileHover={{ y: -4, borderColor: 'rgba(0, 80, 180, 0.2)', boxShadow: '0 12px 24px -8px rgba(0, 80, 180, 0.08)' }}
+                                transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                                className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_12px_-4px_rgba(0,0,0,0.015)] relative group overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-2xl group-hover:opacity-100 transition-opacity" />
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-8 h-8 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center">
-                                            <ShieldCheckIcon className="w-5 h-5 text-primary" />
+                                        <div className="w-8 h-8 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+                                            <ShieldCheckIcon className="w-5 h-5" />
                                         </div>
                                         <span className="text-primary bg-primary/5 border border-primary/10 px-2 py-0.5 rounded text-[10px] font-bold">+4% vs last session</span>
                                     </div>
-                                    <h3 className="text-xs text-on-surface-variant uppercase tracking-wider font-bold">Culture Fit Score</h3>
+                                    <h3 className="text-xs text-on-surface-variant/80 uppercase tracking-wider font-extrabold">Culture Fit Score</h3>
                                     <p className="text-4xl font-extrabold text-on-surface mt-1.5">
                                         {Math.min(100, report.matchScore + 4)}<span className="text-lg font-bold opacity-60 ml-0.5">%</span>
                                     </p>
                                 </div>
                                 <div className="mt-6">
-                                    <div className="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                                    <div className="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
                                         <div
                                             className="bg-gradient-to-r from-primary to-blue-500 h-full rounded-full transition-all duration-1000"
                                             style={{ width: `${Math.min(100, report.matchScore + 4)}%` }}
                                         ></div>
                                     </div>
-                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2">
+                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2.5">
                                         <span>Alignment Target: 85%</span>
                                         <span>Status: Strong Fit</span>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Confidence Index */}
-                            <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_15px_rgba(0,0,0,0.01)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-tertiary/2 rounded-full blur-2xl group-hover:bg-tertiary/5 transition-colors" />
+                            <motion.div
+                                whileHover={{ y: -4, borderColor: 'rgba(149, 54, 0, 0.2)', boxShadow: '0 12px 24px -8px rgba(149, 54, 0, 0.08)' }}
+                                transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                                className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_12px_-4px_rgba(0,0,0,0.015)] relative group overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-tertiary/5 to-transparent rounded-full blur-2xl group-hover:opacity-100 transition-opacity" />
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-8 h-8 rounded-lg bg-tertiary/5 border border-tertiary/10 flex items-center justify-center">
-                                            <BoltIcon className="w-5 h-5 text-tertiary" />
+                                        <div className="w-8 h-8 rounded-lg bg-tertiary/5 border border-tertiary/10 flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform duration-300">
+                                            <BoltIcon className="w-5 h-5" />
                                         </div>
                                         <span className="text-tertiary bg-tertiary/5 border border-tertiary/10 px-2 py-0.5 rounded text-[10px] font-bold">High Reliability</span>
                                     </div>
-                                    <h3 className="text-xs text-on-surface-variant uppercase tracking-wider font-bold">Confidence Index</h3>
+                                    <h3 className="text-xs text-on-surface-variant/80 uppercase tracking-wider font-extrabold">Confidence Index</h3>
                                     <p className="text-4xl font-extrabold text-on-surface mt-1.5">
                                         {report.matchScore}<span className="text-lg font-bold opacity-60 ml-0.5">%</span>
                                     </p>
                                 </div>
                                 <div className="mt-6">
-                                    <div className="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                                    <div className="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
                                         <div
                                             className="bg-gradient-to-r from-tertiary to-amber-500 h-full rounded-full transition-all duration-1000"
                                             style={{ width: `${report.matchScore}%` }}
                                         ></div>
                                     </div>
-                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2">
+                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2.5">
                                         <span>Calibration Target: 80%</span>
                                         <span>Status: Verified</span>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Leadership Presence */}
-                            <div className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_15px_rgba(0,0,0,0.01)] hover:shadow-md hover:border-primary/10 transition-all duration-300 relative group overflow-hidden">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/2 rounded-full blur-2xl group-hover:bg-secondary/5 transition-colors" />
+                            <motion.div
+                                whileHover={{ y: -4, borderColor: 'rgba(80, 95, 118, 0.2)', boxShadow: '0 12px 24px -8px rgba(80, 95, 118, 0.08)' }}
+                                transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                                className="bg-surface-container-lowest border border-outline-variant/45 rounded-2xl p-6 flex flex-col justify-between shadow-[0_2px_12px_-4px_rgba(0,0,0,0.015)] relative group overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-secondary/5 to-transparent rounded-full blur-2xl group-hover:opacity-100 transition-opacity" />
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-8 h-8 rounded-lg bg-secondary/5 border border-secondary/10 flex items-center justify-center">
-                                            <UserGroupIcon className="w-5 h-5 text-secondary" />
+                                        <div className="w-8 h-8 rounded-lg bg-secondary/5 border border-secondary/10 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform duration-300">
+                                            <UserGroupIcon className="w-5 h-5" />
                                         </div>
                                         <span className="text-secondary bg-secondary/5 border border-secondary/10 px-2 py-0.5 rounded text-[10px] font-bold">Top 5% Applicants</span>
                                     </div>
-                                    <h3 className="text-xs text-on-surface-variant uppercase tracking-wider font-bold">Leadership Presence</h3>
+                                    <h3 className="text-xs text-on-surface-variant/80 uppercase tracking-wider font-extrabold">Leadership Presence</h3>
                                     <p className="text-4xl font-extrabold text-on-surface mt-1.5">
                                         {report.matchScore >= 85 ? 'A+' : report.matchScore >= 75 ? 'A' : report.matchScore >= 65 ? 'B+' : 'B'}
                                     </p>
                                 </div>
                                 <div className="mt-6">
                                     <div className="flex gap-1.5">
-                                        <div className={`flex-1 h-1.5 rounded-full ${report.matchScore >= 60 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
-                                        <div className={`flex-1 h-1.5 rounded-full ${report.matchScore >= 70 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
-                                        <div className={`flex-1 h-1.5 rounded-full ${report.matchScore >= 80 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
-                                        <div className={`flex-1 h-1.5 rounded-full ${report.matchScore >= 90 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
+                                        <div className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${report.matchScore >= 60 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
+                                        <div className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${report.matchScore >= 70 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
+                                        <div className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${report.matchScore >= 80 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
+                                        <div className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${report.matchScore >= 90 ? 'bg-secondary' : 'bg-surface-container'}`}></div>
                                     </div>
-                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2">
+                                    <div className="flex justify-between items-center text-[10px] text-on-surface-variant/70 font-semibold mt-2.5">
                                         <span>Scale: B to A+</span>
                                         <span>Status: Highly Capable</span>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </section>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                             {/* Question Breakdown Accordion list */}
-                            <section className="lg:col-span-8 flex flex-col gap-4">
+                            <section className="lg:col-span-8 flex flex-col gap-6">
                                 <div className="flex justify-between items-center mb-base border-b border-outline-variant pb-2">
                                     <h4 className="text-headline-md font-bold text-on-surface">Question Breakdown</h4>
                                     <span className="text-label-sm text-on-surface-variant bg-surface-container-high px-2.5 py-1 rounded-full font-semibold">
@@ -880,104 +889,64 @@ const Interview = () => {
                             </section>
 
                             {/* Sidebar elements */}
-                            <aside className="lg:col-span-4 flex flex-col gap-4 w-full lg:sticky lg:top-20">
+                            <aside className="lg:col-span-4 flex flex-col gap-6 w-full lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto custom-scrollbar pr-1">
 
                                 {/* AI Coach Summary Card */}
                                 <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:border-primary/10 transition-all duration-300">
-                                    <div className="p-5 border-b border-outline-variant/60 bg-gradient-to-r from-surface-bright/50 to-surface-container-lowest">
-                                        <div className="flex items-center gap-2 mb-2 select-none">
-                                            <div className="p-1 rounded bg-primary/5 text-primary flex items-center justify-center flex-shrink-0">
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.187L15 15l-5.187.813ZM18.094 6.228 17.5 10l-.594-3.772L13 6l3.906-.594L17.5 2l.594 3.406L22 6l-3.906.228Z" />
-                                                </svg>
-                                            </div>
-                                            <span className="text-[10px] text-primary font-bold uppercase tracking-wider">AI Executive Analysis</span>
-                                        </div>
-                                        <div className="flex justify-between items-end">
-                                            <p className="text-lg md:text-xl font-extrabold text-on-surface tracking-tight text-slate-800">
+                                    <div className="py-3 px-4 border-b border-outline-variant/60 bg-gradient-to-r from-surface-bright/50 to-surface-container-lowest">
+                                        <div className="flex justify-between items-center gap-2">
+                                            <h5 className="text-sm font-bold text-slate-800 tracking-tight">
                                                 {report.matchScore >= 80 ? 'Excellent Ownership' : 'Strong Alignment'}
-                                            </p>
-                                            <span className="bg-primary/5 text-primary border border-primary/15 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-0.5">
+                                            </h5>
+                                            <span className="bg-primary/5 text-primary border border-primary/15 px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider select-none flex-shrink-0">
                                                 Grade A
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="p-5 flex flex-col gap-5">
+                                    <div className="p-4 flex flex-col gap-4">
                                         {/* Overall Feedback */}
-                                        <div className="flex flex-col gap-2">
-                                            <div className="flex items-center gap-1.5 border-b border-outline-variant/30 pb-1.5 select-none">
+                                        <div className="flex flex-col gap-1.5">
+                                            <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1 select-none">
                                                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-on-surface-variant/80">Overall Feedback</span>
                                             </div>
-                                            <p className="text-[13px] leading-relaxed text-slate-600 font-medium">
+                                            <p className="text-xs leading-relaxed text-slate-600 font-medium max-w-[280px]">
                                                 Your narrative structures show clear <span className="font-semibold text-primary">situational ownership</span>. You demonstrate high compatibility with core values such as ownership, conflict resolution, and structured logic.
                                             </p>
                                         </div>
 
                                         {/* Key Strengths */}
-                                        <div className="flex flex-col gap-2.5">
-                                            <div className="flex items-center gap-1.5 border-b border-outline-variant/30 pb-1.5 select-none">
+                                        <div className="flex flex-col gap-2">
+                                            <div className="flex items-center gap-1.5 border-b border-outline-variant/20 pb-1 select-none">
                                                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-on-surface-variant/80">Key Strengths</span>
                                             </div>
-                                            <ul className="flex flex-col gap-3 text-xs text-slate-600 font-medium">
-                                                <li className="flex items-start gap-2.5">
-                                                    <div className="w-5 h-5 rounded bg-emerald-500/[0.04] text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                        <CheckIcon className="w-3 h-3 stroke-[3.5]" />
+                                            <ul className="flex flex-col gap-2 text-xs text-slate-600 font-medium">
+                                                <li className="flex items-start gap-2 max-w-[280px]">
+                                                    <div className="w-4 h-4 rounded bg-emerald-500/5 text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <CheckIcon className="w-2.5 h-2.5 stroke-[4.5]" />
                                                     </div>
-                                                    <span className="leading-relaxed">
+                                                    <span className="leading-normal text-[11px]">
                                                         <strong className="text-slate-800 font-bold">Conflict Resolution:</strong> High emotional intelligence in navigating complex team conflicts.
                                                     </span>
                                                 </li>
-                                                <li className="flex items-start gap-2.5">
-                                                    <div className="w-5 h-5 rounded bg-emerald-500/[0.04] text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                        <CheckIcon className="w-3 h-3 stroke-[3.5]" />
+                                                <li className="flex items-start gap-2 max-w-[280px]">
+                                                    <div className="w-4 h-4 rounded bg-emerald-500/5 text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <CheckIcon className="w-2.5 h-2.5 stroke-[4.5]" />
                                                     </div>
-                                                    <span className="leading-relaxed">
+                                                    <span className="leading-normal text-[11px]">
                                                         <strong className="text-slate-800 font-bold">Business Alignment:</strong> Articulates macro business impact alongside core engineering tasks.
                                                     </span>
                                                 </li>
-                                                <li className="flex items-start gap-2.5">
-                                                    <div className="w-5 h-5 rounded bg-emerald-500/[0.04] text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                        <CheckIcon className="w-3 h-3 stroke-[3.5]" />
+                                                <li className="flex items-start gap-2 max-w-[280px]">
+                                                    <div className="w-4 h-4 rounded bg-emerald-500/5 text-emerald-600 border border-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <CheckIcon className="w-2.5 h-2.5 stroke-[4.5]" />
                                                     </div>
-                                                    <span className="leading-relaxed">
-                                                        <strong className="text-slate-800 font-bold">Accountability &amp; Grit:</strong> Clear demonstration of personal ownership for project outcomes and failures.
+                                                    <span className="leading-normal text-[11px]">
+                                                        <strong className="text-slate-800 font-bold">Accountability &amp; Grit:</strong> Personal ownership for project outcomes and failures.
                                                     </span>
                                                 </li>
                                             </ul>
                                         </div>
-
-                                        {/* Next Step Recommendation */}
-                                        <div className="p-4 bg-surface-container-low/60 rounded-xl border border-outline-variant/40 shadow-[0_1px_2px_rgba(0,0,0,0.01)] flex flex-col gap-2">
-                                            <div className="flex items-center gap-1.5 text-slate-700 select-none">
-                                                <LightBulbIcon className="w-4 h-4 text-primary" />
-                                                <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-600">Next Step Recommendation</span>
-                                            </div>
-                                            <div className="border-t border-outline-variant/30 pt-1.5">
-                                                <p className="text-xs font-bold text-on-surface mb-0.5">Employ the STAR framework</p>
-                                                <p className="text-[11px] text-on-surface-variant/80 leading-relaxed font-medium">
-                                                    Ensure every response clearly identifies the **Situation**, **Task**, **Action**, and **Result** to maximize executive readability.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Performance velocity graph */}
-                                <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
-                                    <h5 className="text-xs font-bold text-on-surface-variant mb-md uppercase tracking-wider">Preparation Velocity</h5>
-
-                                    <div className="flex items-end gap-sm h-32 mb-sm">
-                                        <div className="flex-1 bg-surface-container-high rounded-t-lg h-[40%]" title="Session 1: 40%"></div>
-                                        <div className="flex-1 bg-surface-container-high rounded-t-lg h-[60%]" title="Session 2: 60%"></div>
-                                        <div className="flex-1 bg-surface-container-high rounded-t-lg h-[55%]" title="Session 3: 55%"></div>
-                                        <div className="flex-1 bg-primary/70 rounded-t-lg h-[80%]" title="Session 4: 80%"></div>
-                                        <div className="flex-1 bg-primary rounded-t-lg h-[95%]" title="Session 5 (Current): 95%"></div>
-                                    </div>
-
-                                    <div className="flex justify-between text-xs text-on-surface-variant font-semibold">
-                                        <span>Session 1</span>
-                                        <span>Session 5 (Current)</span>
                                     </div>
                                 </div>
                             </aside>
@@ -986,10 +955,10 @@ const Interview = () => {
                 )}
 
                 {activeNav === 'roadmap' && (
-                    <div className="flex-1 py-6 px-margin-desktop bg-background max-w-max-width mx-auto w-full flex flex-col gap-6 animate-fade-in">
+                    <div className="flex-1 py-6 px-8 md:px-10 bg-background max-w-[1400px] mx-auto w-full flex flex-col gap-8 animate-fade-in">
 
                         {/* Page header and progress bar */}
-                        <section className="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm">
+                        <section className="bg-surface-container-lowest border border-outline-variant/45 p-8 rounded-2xl shadow-sm">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
                                 <div>
                                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-extrabold uppercase tracking-wider mb-2">
@@ -1043,82 +1012,177 @@ const Interview = () => {
                             </div>
                         </section>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                             {/* Main timeline of preparation plan */}
-                            <div className="lg:col-span-8 space-y-4 relative">
+                            <div className="lg:col-span-8 space-y-3 relative">
                                 {report.preparationPlan.map((day, dIdx) => {
                                     const dayTasksLength = day.tasks.length
                                     const dayCompletedCount = day.tasks.filter((_, tIdx) => !!completedTasks[`${day.day}-${tIdx}`]).length
 
                                     const isFullyCompleted = dayCompletedCount === dayTasksLength
                                     const isInProgress = dayCompletedCount > 0 && dayCompletedCount < dayTasksLength
+                                    const isActive = dIdx === activeDayIdx || (activeDayIdx === -1 && dIdx === report.preparationPlan.length - 1)
+                                    const isExpanded = expandedRoadmapDays[day.day] !== undefined ? expandedRoadmapDays[day.day] : isActive
+
+                                    const totalMins = day.tasks.length * 45
+                                    const formatPrepTime = (mins) => {
+                                        const hrs = Math.floor(mins / 60)
+                                        const rem = mins % 60
+                                        if (hrs === 0) return `${rem}m prep`
+                                        if (rem === 0) return `${hrs}h prep`
+                                        return `${hrs}h ${rem}m prep`
+                                    }
 
                                     return (
-                                        <div key={day._id || day.day} className="relative pl-12 pb-4 last:pb-0">
+                                        <div key={day._id || day.day} className="relative pl-10 pb-3 last:pb-0">
                                             {dIdx < report.preparationPlan.length - 1 && (
-                                                <div className="timeline-line"></div>
+                                                <div className="absolute left-[18px] top-10 bottom-[-20px] w-[4px] bg-slate-100 dark:bg-slate-800/40 rounded-full z-0 overflow-hidden">
+                                                    <div
+                                                        className={`w-full rounded-full transition-all duration-700 ease-in-out ${isFullyCompleted
+                                                                ? 'bg-primary shadow-[0_0_10px_rgba(37,99,235,0.6)]'
+                                                                : 'bg-gradient-to-b from-primary via-primary/70 to-primary/20'
+                                                            }`}
+                                                        style={{
+                                                            height: isFullyCompleted
+                                                                ? '100%'
+                                                                : isInProgress
+                                                                    ? `${(dayCompletedCount / dayTasksLength) * 100}%`
+                                                                    : '0%'
+                                                        }}
+                                                    />
+                                                </div>
                                             )}
 
-                                            <div className={`absolute left-0 top-0 w-12 h-12 flex items-center justify-center rounded-full z-10 shadow-md border ${isFullyCompleted
-                                                ? 'bg-primary text-white border-primary'
-                                                : isInProgress
-                                                    ? 'bg-surface-container-lowest text-primary border-primary border-2'
-                                                    : 'bg-surface-container-lowest text-on-surface-variant border-outline-variant'
+                                            <div className={`absolute left-1 top-2 w-8 h-8 flex items-center justify-center rounded-full z-10 transition-all duration-500 border ${isFullyCompleted
+                                                    ? 'bg-primary text-white border-primary shadow-[0_0_12px_rgba(37,99,235,0.35)]'
+                                                    : isActive || isInProgress
+                                                        ? 'bg-surface-container-lowest text-primary border-primary shadow-[0_0_8px_rgba(37,99,235,0.15)]'
+                                                        : 'bg-surface-container-lowest text-on-surface-variant/40 border border-outline-variant/40'
                                                 }`}>
                                                 {isFullyCompleted ? (
-                                                    <CheckCircleIcon className="w-6 h-6" />
-                                                ) : isInProgress ? (
-                                                    <PlayCircleIcon className="w-6 h-6" />
+                                                    <CheckIcon className="w-4 h-4 stroke-[3.5]" />
+                                                ) : isActive || isInProgress ? (
+                                                    <span className="relative flex h-3 w-3 items-center justify-center">
+                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/20 opacity-75"></span>
+                                                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+                                                    </span>
                                                 ) : (
-                                                    <BookOpenIcon className="w-6 h-6" />
+                                                    <span className="text-[10px] font-bold font-mono tracking-tight text-on-surface-variant/50">
+                                                        {(dIdx + 1).toString().padStart(2, '0')}
+                                                    </span>
                                                 )}
                                             </div>
 
-                                            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md roadmap-card transition-all">
-                                                <div className="flex justify-between items-start mb-4 border-b border-outline-variant/30 pb-2">
-                                                    <div>
-                                                        <h3 className="text-body-lg font-bold text-on-surface">Day {day.day} &bull; Focus</h3>
-                                                        <p className="text-sm font-semibold text-primary mt-0.5">{day.focus}</p>
-                                                    </div>
-                                                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${isFullyCompleted
-                                                        ? 'bg-primary/10 text-primary'
-                                                        : isInProgress
-                                                            ? 'bg-secondary-container text-on-secondary-container'
-                                                            : 'bg-surface-container-high text-on-surface-variant'
-                                                        }`}>
-                                                        {isFullyCompleted ? 'Cleared' : isInProgress ? 'In Progress' : 'Pending'}
-                                                    </span>
-                                                </div>
-
-                                                <div className="space-y-2">
-                                                    {day.tasks.map((task, tIdx) => {
-                                                        const isChecked = !!completedTasks[`${day.day}-${tIdx}`]
-                                                        return (
-                                                            <div
-                                                                key={tIdx}
-                                                                onClick={() => toggleTask(day.day, tIdx)}
-                                                                className={`flex items-center gap-md p-sm rounded-lg border transition-all cursor-pointer select-none ${isChecked
-                                                                    ? 'bg-primary/5 border-primary/20 opacity-70'
-                                                                    : 'hover:bg-surface-container-low border-outline-variant/40 bg-surface-container-lowest'
-                                                                    }`}
-                                                            >
-                                                                <div className="relative flex-shrink-0">
-                                                                    <div className={`w-6 h-6 border-2 rounded flex items-center justify-center transition-all ${isChecked
-                                                                        ? 'bg-primary border-primary text-white shadow-sm'
-                                                                        : 'border-outline hover:border-primary bg-white'
-                                                                        }`}>
-                                                                        <CheckIcon className={`w-4 h-4 stroke-[3] transition-opacity ${isChecked ? 'opacity-100' : 'opacity-0'}`} />
-                                                                    </div>
-                                                                </div>
-
-                                                                <span className={`font-body-md text-sm flex-grow leading-relaxed ${isChecked ? 'line-through text-on-surface-variant font-medium' : 'text-on-surface font-semibold'}`}>
-                                                                    {task}
-                                                                </span>
+                                            <div className={`transition-all duration-500 rounded-xl border overflow-hidden ${isFullyCompleted
+                                                    ? 'border-outline-variant/60 bg-surface-container-lowest opacity-90'
+                                                    : isActive || isInProgress
+                                                        ? 'border-primary/35 bg-gradient-to-br from-primary/[0.03] to-surface-container-lowest shadow-[0_4px_20px_rgba(37,99,235,0.06)] dark:shadow-[0_4px_20px_rgba(37,99,235,0.15)]'
+                                                        : 'border-outline-variant/40 bg-surface-container-lowest'
+                                                }`}>
+                                                {/* Expandable Module Header */}
+                                                <div
+                                                    onClick={() => toggleRoadmapDay(day.day, isActive)}
+                                                    className="flex justify-between items-center cursor-pointer select-none py-3 px-5 hover:bg-slate-50/20 transition-colors"
+                                                >
+                                                    <div className="flex-1 min-w-0 pr-4">
+                                                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                                            <span className="text-body-sm font-extrabold uppercase tracking-wider text-primary">Day {day.day}</span>
+                                                            <span className="text-xs text-on-surface-variant/40 select-none">&bull;</span>
+                                                            <span className="text-body-md font-bold text-on-surface truncate">{day.focus}</span>
+                                                        </div>
+                                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2 text-[11px] text-on-surface-variant/70 font-semibold select-none">
+                                                            <div className="flex items-center gap-1">
+                                                                <CalendarIcon className="w-3.5 h-3.5 opacity-80" />
+                                                                <span>{formatPrepTime(totalMins)}</span>
                                                             </div>
-                                                        )
-                                                    })}
+                                                            <span className="text-on-surface-variant/30 font-light hidden sm:inline">|</span>
+                                                            <div className="flex items-center gap-1.5">
+                                                                <CheckCircleIcon className="w-3.5 h-3.5 opacity-80 text-primary/80" />
+                                                                <span>{dayCompletedCount}/{dayTasksLength} Completed</span>
+                                                                <span className="text-on-surface-variant/30 font-light">&bull;</span>
+                                                                <div className="w-16 h-1 bg-slate-100 dark:bg-slate-800/80 rounded-full overflow-hidden select-none">
+                                                                    <div
+                                                                        className={`h-full rounded-full transition-all duration-500 ${isFullyCompleted ? 'bg-primary shadow-[0_0_4px_rgba(37,99,235,0.4)]' : 'bg-primary/70'}`}
+                                                                        style={{ width: `${dayTasksLength > 0 ? (dayCompletedCount / dayTasksLength) * 100 : 0}%` }}
+                                                                    />
+                                                                </div>
+                                                                <span className="text-[10px] font-bold text-primary">{dayTasksLength > 0 ? Math.round((dayCompletedCount / dayTasksLength) * 100) : 0}%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-center gap-3 flex-shrink-0">
+                                                        {isFullyCompleted ? (
+                                                            <span className="inline-flex items-center gap-1 bg-emerald-500/[0.06] border border-emerald-500/15 text-emerald-600 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider select-none">
+                                                                <CheckIcon className="w-3 h-3 stroke-[3.5]" />
+                                                                Milestone Cleared
+                                                            </span>
+                                                        ) : (
+                                                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full select-none ${isActive || isInProgress
+                                                                    ? 'bg-primary/10 text-primary border border-primary/10'
+                                                                    : 'bg-surface-container-high text-on-surface-variant border border-outline-variant/20'
+                                                                }`}>
+                                                                {isInProgress ? 'In Progress' : 'Pending'}
+                                                            </span>
+                                                        )}
+                                                        <ChevronDownIcon
+                                                            className={`w-4 h-4 text-on-surface-variant transition-transform duration-300 ${isExpanded ? 'rotate-180 text-primary' : ''
+                                                                }`}
+                                                        />
+                                                    </div>
                                                 </div>
+
+                                                {/* Expandable Module Content */}
+                                                <AnimatePresence initial={false}>
+                                                    {isExpanded && (
+                                                        <motion.div
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                                            className="overflow-hidden border-t border-outline-variant/30"
+                                                        >
+                                                            <div className="px-5 pb-3.5 pt-1.5 space-y-1.5 bg-surface-container-lowest/40">
+                                                                {day.tasks.map((task, tIdx) => {
+                                                                    const isChecked = !!completedTasks[`${day.day}-${tIdx}`]
+                                                                    return (
+                                                                        <motion.div
+                                                                            key={tIdx}
+                                                                            onClick={() => toggleTask(day.day, tIdx)}
+                                                                            whileHover={{ x: isChecked ? 0 : 3, borderColor: isChecked ? 'rgba(37, 99, 235, 0.15)' : 'rgba(37, 99, 235, 0.25)' }}
+                                                                            transition={{ duration: 0.2, ease: "easeOut" }}
+                                                                            className={`relative flex items-center gap-4 py-2.5 px-4 pl-5.5 rounded-xl border transition-all cursor-pointer select-none ${isChecked
+                                                                                ? 'bg-slate-50/40 dark:bg-slate-900/10 border-slate-200/40 dark:border-slate-800/30 opacity-75'
+                                                                                : 'border-outline-variant/40 bg-surface-container-lowest shadow-sm hover:shadow-[0_4px_12px_rgba(37,99,235,0.03)]'
+                                                                                }`}
+                                                                        >
+                                                                            {/* Left active line indicator */}
+                                                                            <div className={`absolute left-0 top-2.5 bottom-2.5 w-[3px] rounded-r transition-all duration-300 ${isChecked ? 'bg-primary' : 'bg-transparent'
+                                                                                }`} />
+
+                                                                            <div className="relative flex-shrink-0">
+                                                                                <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all duration-300 ${isChecked
+                                                                                    ? 'bg-primary border-primary text-white shadow-[0_2px_8px_rgba(37,99,235,0.25)]'
+                                                                                    : 'border-slate-300 dark:border-slate-700 bg-white hover:border-primary'
+                                                                                    }`}>
+                                                                                    <CheckIcon className={`w-3.5 h-3.5 stroke-[4] transition-opacity duration-300 ${isChecked ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`} />
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <span className={`font-body-md text-sm flex-grow leading-relaxed transition-all duration-300 ${isChecked
+                                                                                    ? 'line-through text-on-surface-variant/70 font-medium'
+                                                                                    : 'text-on-surface font-semibold'
+                                                                                }`}>
+                                                                                {task}
+                                                                            </span>
+                                                                        </motion.div>
+                                                                    )
+                                                                })}
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
                                             </div>
                                         </div>
                                     )
@@ -1126,44 +1190,108 @@ const Interview = () => {
                             </div>
 
                             {/* Sidebar study cards */}
-                            <div className="lg:col-span-4 space-y-md w-full lg:sticky lg:top-20">
+                            <div className="lg:col-span-4 space-y-6 w-full lg:sticky lg:top-24 lg:self-start">
 
-                                {/* Preparation streak widget */}
-                                <div className="bg-primary text-white rounded-xl p-md shadow-lg shadow-primary/10 overflow-hidden relative">
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                                    <h4 className="text-[10px] uppercase tracking-widest text-white/70 mb-4 font-bold">Preparation Streak</h4>
-                                    <div className="flex items-end gap-xs mb-md">
-                                        <span className="text-display-lg leading-none font-bold">
-                                            {completedCount > 0 ? Math.ceil(completedCount / 2) : 1}
-                                        </span>
-                                        <span className="text-body-sm font-semibold mb-1">Days Active</span>
+                                {/* Live AI Progress Tracker */}
+                                {(() => {
+                                    const getRoadmapCoachAdvice = () => {
+                                        if (progressPct === 0) return "Select Day 1 above and check off completed topics to kickstart your preparation velocity."
+                                        if (progressPct === 100) return "Fantastic job! All milestones are cleared. You are fully prepared to dominate this interview role."
+                                        if (progressPct < 40) return "You're building early momentum. Reviewing daily focus cards consistently raises your match score."
+                                        if (progressPct < 80) return "Great progress! You are entering the core competencies phase. Keep clearing milestones."
+                                        return "Almost there! Polish the remaining milestones to lock in full competency."
+                                    }
+
+                                    return (
+                                        <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm relative overflow-hidden">
+                                            {/* Top dynamic status badge */}
+                                            <div className="flex items-center justify-between mb-5 select-none">
+                                                <span className="px-2 py-0.5 rounded bg-primary/5 border border-primary/15 text-[10px] font-bold text-primary uppercase tracking-wider">
+                                                    AI Tracker Live
+                                                </span>
+                                                <span className="inline-flex items-center text-[10px] text-emerald-600 font-bold uppercase tracking-wider">
+                                                    <span className="relative flex h-1.5 w-1.5 mr-1.5">
+                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                                                    </span>
+                                                    Sync Active
+                                                </span>
+                                            </div>
+
+                                            {/* Progress Stats */}
+                                            <div className="space-y-2">
+                                                <div className="flex justify-between items-baseline">
+                                                    <h4 className="text-xs font-extrabold text-on-surface uppercase tracking-wider">ROADMAP COMPLETION</h4>
+                                                    <span className="text-xl font-black text-primary">{progressPct}%</span>
+                                                </div>
+                                                <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full w-full overflow-hidden shadow-inner relative">
+                                                    <div
+                                                        className="h-full bg-gradient-to-r from-primary via-blue-600 to-indigo-500 rounded-full transition-all duration-1000 shadow-[0_0_8px_rgba(37,99,235,0.35)]"
+                                                        style={{ width: `${progressPct}%` }}
+                                                    ></div>
+                                                </div>
+                                                <div className="flex justify-between text-[10px] text-on-surface-variant font-bold">
+                                                    <span>{completedCount} OF {totalTasks} COMPLETED</span>
+                                                    <span>{totalTasks - completedCount} REMAINING</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Active Prep Streak */}
+                                            <div className="flex items-center gap-4 mt-6 p-4 rounded-xl bg-slate-50/50 dark:bg-slate-900/30 border border-slate-200/30 dark:border-slate-800/20">
+                                                <div className="w-11 h-11 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 relative flex-shrink-0">
+                                                    <div className="absolute inset-0 bg-amber-500/10 blur-sm rounded-lg animate-pulse"></div>
+                                                    <BoltIcon className="w-5.5 h-5.5 fill-current relative z-10" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider select-none">PREPARATION STREAK</p>
+                                                    <div className="flex items-baseline gap-0.5 mt-0.5 select-none">
+                                                        <span className="text-lg font-black text-on-surface">
+                                                            {completedCount > 0 ? Math.ceil(completedCount / 2) : 1}
+                                                        </span>
+                                                        <span className="text-xs text-on-surface-variant/80 font-bold pl-1">days active</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Dynamic AI Advisor Tip */}
+                                            <div className="mt-5 pt-4 border-t border-outline-variant/30 flex gap-2.5 items-start">
+                                                <LightBulbIcon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                                <p className="text-xs text-on-surface-variant leading-relaxed font-semibold">
+                                                    {getRoadmapCoachAdvice()}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )
+                                })()}
+
+                                {/* Prep Resources */}
+                                <div className="bg-gradient-to-br from-surface-container-lowest via-surface-container-lowest to-slate-50/50 dark:to-slate-950/20 border border-outline-variant rounded-2xl p-6 shadow-sm">
+                                    <div className="mb-4 select-none">
+                                        <div className="flex items-center gap-2">
+                                            <span className="px-2 py-0.5 rounded bg-primary/5 border border-primary/15 text-[10px] font-bold text-primary uppercase tracking-wider">
+                                                Assets
+                                            </span>
+                                            <h4 className="text-xs font-extrabold text-on-surface uppercase tracking-wider">Prep Resources</h4>
+                                        </div>
+                                        <p className="text-[10px] text-on-surface-variant/70 font-semibold mt-1 leading-relaxed">
+                                            Personalized strategy assets compiled from your assessment results.
+                                        </p>
                                     </div>
-                                    <div className="h-1.5 bg-white/20 rounded-full w-full mb-sm">
-                                        <div
-                                            className="h-full bg-white rounded-full transition-all duration-1000"
-                                            style={{ width: `${Math.min(100, (completedCount / totalTasks) * 100)}%` }}
-                                        ></div>
-                                    </div>
-                                    <p className="text-xs text-white/80 leading-relaxed font-medium">
-                                        Complete all daily milestones to maximize confidence index metrics!
-                                    </p>
-                                </div>
 
-                                {/* Study materials list */}
-                                <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
-                                    <h4 className="text-xs font-bold text-on-surface uppercase tracking-wider mb-md">Daily Prep Resources</h4>
-
-                                    <div className="space-y-sm">
+                                    <div className="space-y-3">
                                         <a
                                             onClick={(e) => { e.preventDefault(); getResumePdf(interviewId); }}
-                                            className="flex items-center gap-sm p-sm hover:bg-surface-container rounded-lg border border-transparent hover:border-outline-variant transition-all cursor-pointer"
+                                            className="group flex items-center gap-3.5 p-3 bg-surface-container-lowest hover:bg-slate-50/40 dark:hover:bg-slate-900/20 rounded-xl border border-outline-variant/50 hover:border-primary/30 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-[0_6px_20px_-6px_rgba(37,99,235,0.08)] hover:-translate-y-0.5"
                                         >
-                                            <div className="w-10 h-10 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
-                                                <DocumentTextIcon className="w-6 h-6" />
+                                            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                                                <DocumentTextIcon className="w-5 h-5 stroke-[2]" />
                                             </div>
-                                            <div className="flex-1">
+                                            <div className="flex-1 min-w-0">
                                                 <p className="text-xs font-bold text-on-surface">Tailored Resume (PDF)</p>
-                                                <p className="text-[10px] text-on-surface-variant font-semibold mt-0.5">Download optimized CV copy</p>
+                                                <p className="text-[10px] text-on-surface-variant/90 font-medium mt-0.5 truncate">Optimized CV tailored for this role</p>
+                                            </div>
+                                            <div className="w-7 h-7 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 flex-shrink-0 shadow-sm">
+                                                <ArrowDownTrayIcon className="w-3.5 h-3.5 stroke-[2.5]" />
                                             </div>
                                         </a>
                                     </div>

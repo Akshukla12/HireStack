@@ -1,8 +1,8 @@
-$bg-card:        #161b22;
-$border-color:   #2a3348;
-$text-primary:   #e6edf3;
-$text-muted:     #7d8590;
-$accent:         #ff2d78;
+$bg-card: #161b22;
+$border-color: #2a3348;
+$text-primary: #e6edf3;
+$text-muted: #7d8590;
+$accent: #ff2d78;
 
 .navbar {
     width: 100%;
@@ -42,7 +42,7 @@ $accent:         #ff2d78;
             font-weight: 800;
             letter-spacing: -0.02em;
             color: $text-primary;
-            
+
             .highlight-text {
                 color: $accent;
             }
@@ -128,6 +128,7 @@ $accent:         #ff2d78;
         transform: scale(1);
         filter: drop-shadow(0 0 4px rgba($accent, 0.3));
     }
+
     100% {
         transform: scale(1.05);
         filter: drop-shadow(0 0 10px rgba($accent, 0.6));
